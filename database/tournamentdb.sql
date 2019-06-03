@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 03, 2019 at 07:27 AM
+-- Generation Time: Jun 03, 2019 at 09:48 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.7
 
@@ -110,7 +110,7 @@ CREATE TABLE `ebuyin` (
 --
 
 INSERT INTO `ebuyin` (`id`, `etotalplayers`, `etotalbuyer`, `ebuyinamount`, `etotalchips`, `eaveragechips`) VALUES
-(101, 34, 5, 150, 5100, 150);
+(101, 23, 0, 150, 3450, 150);
 
 -- --------------------------------------------------------
 
@@ -136,26 +136,6 @@ INSERT INTO `eprizemoney` (`id`, `place`, `amount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `everydayduration`
---
-
-CREATE TABLE `everydayduration` (
-  `id` int(50) NOT NULL,
-  `in_seconds` varchar(50) NOT NULL,
-  `in_minutes` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `everydayduration`
---
-
-INSERT INTO `everydayduration` (`id`, `in_seconds`, `in_minutes`) VALUES
-(101, '120', '2:00'),
-(102, '1200', '20:00');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `everydayprize`
 --
 
@@ -169,7 +149,7 @@ CREATE TABLE `everydayprize` (
 --
 
 INSERT INTO `everydayprize` (`id`, `totalprize`) VALUES
-(101, '10538');
+(101, '8888');
 
 -- --------------------------------------------------------
 
@@ -197,7 +177,7 @@ INSERT INTO `everydaytournament` (`id`, `level`, `blinds`, `in_seconds`) VALUES
 (106, 'Level 5', '400/800', '600'),
 (107, 'Level 6', '500/1,000', '600'),
 (108, 'Level 7', '600/1,200', '600'),
-(109, 'BREAK TIME - 5 MINS BREAK', '-', '300'),
+(109, 'BREAK TIME - 5 MINS', '-', '300'),
 (110, 'Level 8', '700-ANTE-100/1,400', '600'),
 (111, 'Level 9', '800/1,600', '600'),
 (112, 'Level 10', '900/1,800', '60'),
@@ -400,12 +380,6 @@ ALTER TABLE `eprizemoney`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `everydayduration`
---
-ALTER TABLE `everydayduration`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `everydayprize`
 --
 ALTER TABLE `everydayprize`
@@ -493,12 +467,6 @@ ALTER TABLE `ebuyin`
 --
 ALTER TABLE `eprizemoney`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
-
---
--- AUTO_INCREMENT for table `everydayduration`
---
-ALTER TABLE `everydayduration`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `everydayprize`

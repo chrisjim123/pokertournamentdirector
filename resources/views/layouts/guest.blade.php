@@ -178,11 +178,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-hourglass-start"></i> <span>Dialy Tournament</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Players</a></li>
-                <li><a href="#">Buyin</a></li>
-                <li><a href="#">Chips</a></li>
-                <li><a href="#">Level</a></li>
-                <li><a href="#">Pot Money</a></li>
+                <li><a href="{{ url('/eplayersview') }}">Players</a></li>
+                <li><a href="{{ url('/ebuyinview') }}">Buyin</a></li>
+                <li><a href="{{ url('/echipsview') }}">Chips</a></li>
+                <li><a href="{{ url('/elevelview') }}">Level</a></li>
+                <li><a href="{{ url('/epotmoneyview') }}">Pot Money</a></li>
              
               </ul>
             </li>

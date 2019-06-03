@@ -44,8 +44,17 @@ Route::post('/minusplayer', 'PagesController@minusplayer')->name('minusplayer')-
 Auth::routes();
 Route::post('/rebuy', 'PagesController@rebuy')->name('rebuy')->middleware('authenticated');
 Auth::routes();
-Route::any('/viewplayers', 'PagesController@viewplayers');
-
+Route::any('/eplayersview', 'PagesController@eplayersview')->name('eplayersview');
+Auth::routes();
+Route::any('/ebuyinview', 'PagesController@ebuyinview')->name('ebuyinview');
+Auth::routes();
+Route::any('/echipsview', 'PagesController@echipsview')->name('echipsview');
+Auth::routes();
+Route::any('/elevelview', 'PagesController@elevelview')->name('elevelview');
+Auth::routes();
+Route::any('/epotmoneyview', 'PagesController@epotmoneyview')->name('epotmoneyview');
+Auth::routes();	
+Route::post('/updatelevel', 'PagesController@updatelevel')->middleware('authenticated');
 
 //Saturday Tournament Routes
 Auth::routes();
@@ -60,3 +69,8 @@ Auth::routes();
 Route::get('/adminhome', 'AdminController@adminhome')->name('adminhome')->middleware('authenticated');
 
  
+ /*TESTING*/
+Auth::routes();
+ Route::get('/ajax-form-submit', 'FormController@index');
+ Auth::routes();
+ Route::post('/save-form', 'FormController@store');
