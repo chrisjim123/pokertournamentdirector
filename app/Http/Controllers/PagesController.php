@@ -121,7 +121,11 @@ class PagesController extends Controller
     DB::update('update ebuyin set etotalplayers = ?, ebuyinamount = ?, etotalchips = ?, eaveragechips = ? where id = ?' ,[$totalplayers,$buyin,$totalchips,$averagechips,$id]);
 
     $var['new_data_fetch'] = \App\EBuyin::findOrFail($id);
-    echo json_encode($var);
+    
+    $result = [
+      'total' => $totalplayers
+    ];
+    echo json_encode($result);
     exit;
   }
 
@@ -139,7 +143,14 @@ class PagesController extends Controller
 
     DB::update('update ebuyin set etotalplayers = ?, eaveragechips = ? where id = ?' ,[$newtotalplayer,$averagechips,$id]);
 
-     return redirect()->back();
+    $result = [
+      'total' => $newtotalplayer
+    ];
+
+    echo json_encode($result);
+    exit;
+
+     // return redirect()->back();
   }
 
   public function rebuy(Request $request)
@@ -173,7 +184,13 @@ class PagesController extends Controller
 
     DB::update('update ebuyin set etotalbuyer = ?,  etotalchips = ?, eaveragechips = ? where id = ?' ,[$totalrebuys,$totalchips,$averagechips,$id]);
 
-    return redirect()->back();
+    $result = [
+      'total' => $totalrebuys
+    ];
+    echo json_encode($result);
+    exit;
+
+    // return redirect()->back();
   }
 
   public function saturdaytournament(Request $request)

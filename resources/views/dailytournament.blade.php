@@ -150,7 +150,7 @@
   </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" id="saveNewPlayer" class="btn btn-primary">Save</button>
       </div>
     </div>
    </form>
@@ -159,21 +159,6 @@
   </div>
 </div>
 
-<script>
-        $(function () {
-            $('#addplayerform').submit(function (e) {
-                e.preventDefault()  // prevent the form from 'submitting'
-                var url = e.target.action  // get the target
-                var formData = $(this).serialize() // get form data
-                dataType: 'json',
-                $.post(url, formData, function (response) { // send; response.data will be what is returned
-                
-                })
-                  $('#addplayermodal').modal('hide')
-                  alert("New Players has been successfully added.");
-            })
-        })
-    </script>
 
 <!-- End Add Player Modal -->
 
@@ -200,7 +185,7 @@
   </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" id="saveMinusPlayer" class="btn btn-primary">Save</button>
       </div>
     </div>
    </form>
@@ -251,7 +236,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" id="saveRebuy" class="btn btn-primary">Save</button>
       </div>
     </div>
    </form>
@@ -299,7 +284,7 @@
                  <button data-toggle="modal" data-target="#addplayermodal" type="button" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
                 </li>
 
-            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Rebuys</strong></span><b><input value="{{ $ebuyin->etotalbuyer }}" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b>&nbsp;&nbsp;&nbsp;<button  data-toggle="modal" data-target="#updaterebuymodal" type="button"  class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button></li>
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Rebuys</strong></span><b><input id="inputRebuy" value="{{ $ebuyin->etotalbuyer }}" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b>&nbsp;&nbsp;&nbsp;<button  data-toggle="modal" data-target="#updaterebuymodal" type="button"  class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button></li>
     
               <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Ave. Chips</strong></span><b><input value="{{ number_format($ebuyin->eaveragechips) }}" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b> </li>
           
@@ -931,6 +916,73 @@
 
 
 
+<script type="text/javascript">
+  
+  $('#saveRebuy').click(function(event) {
+    /* Act on the event */
+     var totalrebuys = $('#totalrebuys').val();
+
+     // console.log(totalrebuys);
+
+     $.ajax({
+       url: '{{ route('rebuy') }}',
+       type: 'post',
+       dataType: 'json',
+       data: {
+          _token : '{{ csrf_token() }}',
+          totalrebuys : totalrebuys
+       },
+       success: function (data) {
+          console.log(data);
+          $('#inputRebuy').val(data.total);
+
+          $('#updaterebuymodal').modal('hide');
+       }
+     });
+  });
+
+
+  
+  $('#saveNewPlayer').click(function(event) {
+    /* Act on the event */
+    var totalplayers = $('#totalplayers').val();
+    $.ajax({
+      url: '{{ route('addplayer') }}',
+      type: 'post',
+      dataType: 'json',
+      data: {
+        _token : '{{ csrf_token() }}',
+        totalplayers : totalplayers
+      },
+      success: function (data) {
+          $('#tplayer').val(data.total);
+
+          $('#addplayermodal').modal('hide');
+      }
+    });
+  });
+
+  $('#saveMinusPlayer').click(function(event) {
+    /* Act on the event */
+
+    var mplayers = $('#mplayers').val();
+
+    $.ajax({
+        url: '{{ route('minusplayer') }}',
+        type: 'post',
+        dataType: 'json',
+        data: {
+          _token : '{{ csrf_token() }}',
+          mplayers : mplayers
+        },
+        success: function (data) {
+          $('#tplayer').val(data.total);
+
+          $('#minusplayermodal').modal('hide');
+        }
+    });
+  });
+</script>
 
 
 
