@@ -5,7 +5,7 @@
         <section class="content-header">
           <h1>
             Level Controller
-            <small>Everyday Tournament</small>
+            <small>Daily Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
@@ -43,16 +43,18 @@ function current_page($uri = "/") {
                 <li {{ (current_page("echipsview")) ? 'class=active' : '' }}><a href="{{ url('/echipsview') }}">Chips</a></li>
                 <li {{ (current_page("elevelview")) ? 'class=active' : '' }}><a href="#">Level</a></li>
                 <li {{ (current_page("epotmoneyview")) ? 'class=active' : '' }}><a href="{{ url('/epotmoneyview') }}">Pot Money</a></li>
+                <li {{ (current_page("prizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/prizemoneyview') }}">Percent Prize</a></li>
+                   
               </ul>
 
                 
-        <form class="form" action="{{ url('/updatelevel')}}" method="post" enctype="multipart/form-data">
+        <form class="form" action="" method="post" enctype="multipart/form-data">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                 <div class="col-xs-12">
                   <div class="box">
                     <div class="box-header">
-                     <h3 class="box-title">Tournament Level</h3>
+                     <h3 class="box-title">Tournament Level</h3> <br><b style="color:red;"> <i>Note: If you wish to remove or add new row, please contact your administrator.</i></b>
                       </div><!-- /.box-header -->
                         <div class="box-body">
                           <table id="example2" class="table table-bordered table-hover">
@@ -67,10 +69,10 @@ function current_page($uri = "/") {
                             <tbody>
                               @foreach($elevel as $level)
                               <tr name="{{ $level->id }}">
-                                <td><input name="elvels" type="text" style="border:transparent;" value="{{ $level->level }}"></td>
-                                <td><input name="eblinds" type="text" style="border:transparent;" value="{{ $level->blinds }}"></td>
-                                <td><input name="etime" type="text" style="border:transparent;" value="{{ gmdate('i:s', $level->in_seconds) }}"></td>
-                                <td><button name="updatelevel" value="{{ $level->id }}" class="btn btn-md btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Update</button></td>
+                                <td>{{ $level->level }}</td>
+                                <td>{{ $level->blinds }}</td>
+                                <td>{{ gmdate('i:s', $level->in_seconds) }}</td>
+                                <td><button name="updatelevel" value="" class="btn btn-md btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i><a style="color:white;" href="{{ url('/updatelevel')}}/{{$level->id}}"> Update</a></button></td>
                               </tr>
                                @endforeach
 

@@ -183,6 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="{{ url('/echipsview') }}">Chips</a></li>
                 <li><a href="{{ url('/elevelview') }}">Level</a></li>
                 <li><a href="{{ url('/epotmoneyview') }}">Pot Money</a></li>
+                <li><a href="{{ url('/prizemoneyview') }}">Percent Prize</a></li>
              
               </ul>
             </li>
@@ -274,7 +275,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/bootstrap/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/app.min.js')}}"></script>
-<script src="{{ asset('jquery3.3.1.min.js')}}"></script>
+
+
 
 
 
