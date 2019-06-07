@@ -167,10 +167,14 @@
                 var formData = $(this).serialize() // get form data
                 dataType: 'json',
                 $.post(url, formData, function (response) { // send; response.data will be what is returned
-                
+                 $('#tplayer').html(response.new_data);
                 })
+
                   $('#addplayermodal').modal('hide')
+                                    $('#tplayer').html(response.new_data);
                   alert("New Players has been successfully added.");
+
+
             })
         })
     </script>
@@ -282,18 +286,10 @@
     <div class="row" >
         <div class="col-sm-3"><!--left col-->
  
-
-
-          <?php
-            use Illuminate\Support\Facades\DB;
-            use App\EBuyin;
-             $ebuyin = EBuyin::firstOrFail();
-             $eplayers = $ebuyin->etotalplayers;
-          ?>
         <ul class="list-group">
-           <li class="list-group-item" style="font-size: 30px; background: black; color: white; font-family:'digital-clock-font'"><b>ECP - TURBO TOURNAMENT</b><span class="pull-right"> <a href="#"><button title="Refresh Result" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-refresh"></i></button></a></span></li>
+           <li class="list-group-item" style="font-size: 30px; background: black; color: white; font-family:'digital-clock-font'"><b>ECP - TURBO TOURNAMENT</b><span class="pull-right"> <a href="#"><button title="Refresh Result" class="btn btn-sm btn-success" onclick='refreshplayers()'><i class="glyphicon glyphicon-refresh"></i></button></a></span></li>
  
-            <li class="list-group-item text-right" ><span class="pull-left" style="font-size: 25px;"><strong>Players</strong></span><b><input id="tplayer" value="{{ $eplayers }}" id="py" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b></b>&nbsp;&nbsp;&nbsp;
+            <li class="list-group-item text-right" ><span class="pull-left" style="font-size: 25px;"><strong id="tplayer">Players</strong></span><b><input value="{{ $ebuyin->etotalplayers }}" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b></b>&nbsp;&nbsp;&nbsp;
  
                  <button  data-toggle="modal" data-target="#minusplayermodal" type="button"  class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button>
                  <button data-toggle="modal" data-target="#addplayermodal" type="button" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
@@ -668,7 +664,7 @@
         }
       },
       updateRound: function (round) {
-   
+
         switch (round){
 
           case 0:
@@ -829,7 +825,7 @@
 
 @endpush
 
-
+<!-- Refresh the Levels -->
 <script type="text/javascript">
       function refreshPage(){
         if(confirm("Are you sure want to reset?")){
@@ -837,6 +833,32 @@
         }       
       }
 </script>
+
+
+<!-- Refresh the Tournament Details -->
+<script type="text/javascript">
+      function refreshplayers(){
+  
+              <?php 
+              $conn = new mysqli('localhost', 'root', '', 'tournamentdb');
+              if ($conn->connect_error) {
+                die("Connection error: " . $conn->connect_error);
+              }
+              $result = $conn->query("SELECT etotalplayers FROM ebuyin WHERE id = 101");
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                     $playerstotal =$row['etotalplayers'];
+                }
+              }
+              ?>
+
+              var playerstotal = '{{ $playerstotal }}';
+              $('#tplayer').html(playerstotal);
+
+      }
+</script>
+
+
 
 <script type="text/javascript">
   

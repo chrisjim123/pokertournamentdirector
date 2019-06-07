@@ -15,7 +15,6 @@ use Session;
 
 
 //Daily Tournament Databases
-use App\EverydayDuration;
 use App\EBuyin;
 use App\EverydayTournament;
 use App\EverydayPrizeMoney;
@@ -52,48 +51,62 @@ class PagesController extends Controller
     return view('tournament');
   } 
 
+  public function eplayersview()
+  {
+
+    $ebuyin = EBuyin::firstOrFail();
+    return view('dailytournament.eplayers', compact('ebuyin'));
+  }   
+  public function ebuyinview()
+  {
+     $ebuyin = EBuyin::firstOrFail();
+    return view('dailytournament.ebuyin', compact('ebuyin'));
+  } 
+  public function echipsview()
+  {
+    return view('dailytournament.echips');
+  } 
+  public function elevelview()
+  {
+    $elevel = EverydayTournament::all();
+    return view('dailytournament.elevel', compact('elevel'));
+  } 
+  public function epotmoneyview()
+  {
+    $epotprize = EverydayPrize::firstOrFail();
+    return view('dailytournament.epotmoney', compact('epotprize'));
+  } 
+
+  public function updatelevel(Request $request)
+  {
+    if(isset($_POST['updatelevel']))
+    {
+    $id = $_POST['updatelevel'];
+    $elevels = $request->input('elevels');
+    $eblinds = $request->input('eblinds');
+    $etime  = (int)$request->input('etime');
+    $inseconds = ($etime*60);
+    DB::update('update everydaytournament set level = ?, blinds = ?, in_seconds = ? where id = ?' ,[$elevels,$eblinds,$inseconds,$id]);
+
+    session()->flash('status', $elevels.'Record has been updated successfully.');
+    return redirect()->back();
+   }
+    //return redirect()->back();
+  }
+
  	public function dailytournament(Request $request)
  	{
     $posts = EverydayTournament::paginate($this->posts_per_page);
-
-        if($request->ajax()) {
-            return [
-                'posts' => view('ajaxpage')->with(compact('posts'))->render(),
-                'next_page' => $posts->nextPageUrl()
-            ];
-        }
-
-    $eduration = EverydayDuration::firstOrFail();
     $etournament = EverydayTournament::firstOrFail();
     $etournaments = EverydayTournament::all();
     $eprizemoney = EverydayPrizeMoney::all();
     $eprize = EverydayPrize::firstOrFail();
     $ebuyin = EBuyin::firstOrFail();
 
-/*    $temp = explode('/', $etournament->blinds);
- 
-    $blindParts = [
-      'big' => $temp[1],
-      'small' => $temp[0]
-    ];
-
-    $allBlinds = [];
-    foreach ($etournaments as $etournaments) {
-      $temp = explode('/', $etournaments->blinds);
-      $allBlinds[] = [
-        'small' => (int)$temp[0],
-        'big' => (int)$temp[1],
-      ];  
-    }
- */
-
-  $timertournament = DB::select("Select * from everydaytournament");
+    $timertournament = DB::select("Select * from everydaytournament");
 
     return view('/dailytournament', compact(
       'etournaments',
-      'blindParts',
-      'allBlinds',
-      'eduration',
       'etournament',
       'eprizemoney',
       'eprize',
@@ -120,8 +133,8 @@ class PagesController extends Controller
 
     DB::update('update ebuyin set etotalplayers = ?, ebuyinamount = ?, etotalchips = ?, eaveragechips = ? where id = ?' ,[$totalplayers,$buyin,$totalchips,$averagechips,$id]);
 
-    $var['new_data_fetch'] = \App\EBuyin::findOrFail($id);
-    echo json_encode($var);
+    $return['new_data'] = \App\EBuyin::findOrFail($id);
+    echo json_encode($return);
     exit;
   }
 
