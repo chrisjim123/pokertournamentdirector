@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 03, 2019 at 09:48 PM
+-- Generation Time: Jun 07, 2019 at 09:37 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.7
 
@@ -67,28 +67,30 @@ CREATE TABLE `buyin` (
 --
 
 INSERT INTO `buyin` (`id`, `totalplayers`, `totalbuyer`, `buyinamount`, `totalchips`, `averagechips`) VALUES
-(101, 0, 0, 20000, 0, 0);
+(101, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `durations`
+-- Table structure for table `chips`
 --
 
-CREATE TABLE `durations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `in_seconds` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `in_minutes` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `chips` (
+  `id` int(50) NOT NULL,
+  `value` int(50) NOT NULL,
+  `images` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `durations`
+-- Dumping data for table `chips`
 --
 
-INSERT INTO `durations` (`id`, `in_seconds`, `in_minutes`, `created_at`, `updated_at`) VALUES
-(1, '1200', '20:00', NULL, NULL);
+INSERT INTO `chips` (`id`, `value`, `images`) VALUES
+(1, 10, '10.png'),
+(2, 25, 't5.png'),
+(3, 100, '100.png'),
+(4, 1000, '1000.png'),
+(6, 10000, '10000.png');
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,30 @@ CREATE TABLE `ebuyin` (
 --
 
 INSERT INTO `ebuyin` (`id`, `etotalplayers`, `etotalbuyer`, `ebuyinamount`, `etotalchips`, `eaveragechips`) VALUES
-(101, 23, 0, 150, 3450, 150);
+(101, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `echips`
+--
+
+CREATE TABLE `echips` (
+  `id` int(50) NOT NULL,
+  `value` int(50) DEFAULT NULL,
+  `images` varchar(191) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `echips`
+--
+
+INSERT INTO `echips` (`id`, `value`, `images`) VALUES
+(114, 10, '10.png'),
+(115, 25, 't5.png'),
+(116, 100, '100.png'),
+(117, 1000, '1000.png'),
+(119, 10000, '10000.png');
 
 -- --------------------------------------------------------
 
@@ -149,7 +174,7 @@ CREATE TABLE `everydayprize` (
 --
 
 INSERT INTO `everydayprize` (`id`, `totalprize`) VALUES
-(101, '8888');
+(101, '0');
 
 -- --------------------------------------------------------
 
@@ -161,79 +186,29 @@ CREATE TABLE `everydaytournament` (
   `id` int(50) NOT NULL,
   `level` varchar(50) NOT NULL,
   `blinds` varchar(50) NOT NULL,
-  `in_seconds` varchar(50) NOT NULL DEFAULT '0'
+  `in_minutes` int(50) NOT NULL,
+  `in_seconds` int(50) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `everydaytournament`
 --
 
-INSERT INTO `everydaytournament` (`id`, `level`, `blinds`, `in_seconds`) VALUES
-(101, 'Level 1', '50/100', '60'),
-(102, 'Level 2', '100/200', '120'),
-(103, 'Level 3', '200/400', '180'),
-(104, 'BREAK TIME - 10 MINS ', 'CHIP RAISE 25', '600'),
-(105, 'Level 4', '300/600', '600'),
-(106, 'Level 5', '400/800', '600'),
-(107, 'Level 6', '500/1,000', '600'),
-(108, 'Level 7', '600/1,200', '600'),
-(109, 'BREAK TIME - 5 MINS', '-', '300'),
-(110, 'Level 8', '700-ANTE-100/1,400', '600'),
-(111, 'Level 9', '800/1,600', '600'),
-(112, 'Level 10', '900/1,800', '60'),
-(113, 'Level 11', '1,000/2,000', '60'),
-(114, 'END OF TOURNAMENT', '-', '0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `manpowerdocs`
---
-
-CREATE TABLE `manpowerdocs` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `masterfile_id` int(11) NOT NULL,
-  `imagename` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imagefile` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2018_11_15_153127_create_manpower_table', 1),
-(4, '2018_11_19_173238_add_address_to_manpower_table', 1),
-(5, '2018_11_25_144522_add_gender_to_manpower_table', 1),
-(6, '2018_12_02_113107_create-educationalinfo-table', 1),
-(7, '2018_12_02_115407_create-governmentinfo-table', 1),
-(8, '2018_12_02_115649_create-companyinfo-table', 1),
-(9, '2018_12_02_160037_create_manpowers_table', 1),
-(10, '2018_12_22_202802_add_birthdate_to_manpower_table', 1),
-(11, '2018_12_22_203331_add_placeofbirth_to_manpower_table', 1),
-(12, '2018_12_30_145444_add_imagename_to_manpower_table', 1),
-(13, '2018_12_30_150128_add_imagefile_to_manpower_table', 1),
-(14, '2019_01_04_131330_create_banner_table', 1),
-(15, '2019_01_25_163955_create__masterfile_table', 1),
-(16, '2019_02_01_155333_create_admins_table', 1),
-(17, '2019_02_24_103922_create_manpowerdocs_table', 2),
-(18, '2019_05_25_085121_create_durations_table', 3);
+INSERT INTO `everydaytournament` (`id`, `level`, `blinds`, `in_minutes`, `in_seconds`) VALUES
+(101, 'Level 1', '50/100', 1, 60),
+(102, 'Level 2', '100/200', 1, 60),
+(103, 'Level 3', '200/400', 1, 60),
+(104, 'Break Time - 10 mins', 'Chip Raise 25', 10, 600),
+(105, 'Level 4', '300/600', 10, 600),
+(106, 'Level 5', '400/800', 10, 600),
+(107, 'Level 6', '500/1,000', 10, 600),
+(108, 'Level 7', '600/1,200', 10, 600),
+(109, 'Break Time - 5 mins', '-', 5, 300),
+(110, 'Level 8', '700 Ante 100/1,400', 10, 600),
+(111, 'Level 9', '800/1,600', 10, 600),
+(112, 'Level 10', '900/1,800', 1, 60),
+(113, 'Level 11', '1,000/2,000', 1, 60),
+(114, 'END OF TOURNAMENT', '-', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -263,7 +238,7 @@ CREATE TABLE `prize` (
 --
 
 INSERT INTO `prize` (`id`, `totalprize`) VALUES
-(101, 100000);
+(101, 0);
 
 -- --------------------------------------------------------
 
@@ -303,21 +278,22 @@ CREATE TABLE `tournament` (
   `id` int(11) NOT NULL,
   `level` varchar(50) NOT NULL,
   `blinds` varchar(50) NOT NULL,
-  `status` varchar(50) NOT NULL
+  `in_minutes` int(50) NOT NULL,
+  `in_seconds` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tournament`
 --
 
-INSERT INTO `tournament` (`id`, `level`, `blinds`, `status`) VALUES
-(101, 'Level 1', '25/50', 'active'),
-(102, 'Level 2', '50/100', 'active'),
-(103, 'Level 3', '100/200', 'active'),
-(104, 'Level 4', '200/400', 'active'),
-(105, 'Level 5', '300/600', 'active'),
-(106, 'Level 6', '400/800', 'active'),
-(107, 'Level 7', '200/500', 'active');
+INSERT INTO `tournament` (`id`, `level`, `blinds`, `in_minutes`, `in_seconds`) VALUES
+(101, 'Level 1', '25/50', 20, 1200),
+(102, 'Level 2', '50/100', 20, 1200),
+(103, 'Level 3', '100/200', 20, 1200),
+(104, 'Level 4', '200/400', 20, 1200),
+(105, 'Level 5', '300/600', 20, 1200),
+(106, 'Level 6', '400/800', 20, 1200),
+(107, 'Level 7', '200/500', 20, 1200);
 
 -- --------------------------------------------------------
 
@@ -362,15 +338,21 @@ ALTER TABLE `buyin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `durations`
+-- Indexes for table `chips`
 --
-ALTER TABLE `durations`
+ALTER TABLE `chips`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ebuyin`
 --
 ALTER TABLE `ebuyin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `echips`
+--
+ALTER TABLE `echips`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -389,18 +371,6 @@ ALTER TABLE `everydayprize`
 -- Indexes for table `everydaytournament`
 --
 ALTER TABLE `everydaytournament`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `manpowerdocs`
---
-ALTER TABLE `manpowerdocs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -451,16 +421,22 @@ ALTER TABLE `buyin`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
--- AUTO_INCREMENT for table `durations`
+-- AUTO_INCREMENT for table `chips`
 --
-ALTER TABLE `durations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `chips`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `ebuyin`
 --
 ALTER TABLE `ebuyin`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `echips`
+--
+ALTER TABLE `echips`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `eprizemoney`
@@ -481,18 +457,6 @@ ALTER TABLE `everydaytournament`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
--- AUTO_INCREMENT for table `manpowerdocs`
---
-ALTER TABLE `manpowerdocs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
 -- AUTO_INCREMENT for table `prize`
 --
 ALTER TABLE `prize`
@@ -502,7 +466,7 @@ ALTER TABLE `prize`
 -- AUTO_INCREMENT for table `prizemoney`
 --
 ALTER TABLE `prizemoney`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `tournament`

@@ -1,52 +1,140 @@
-@extends('layouts.guestbackup')
+@extends('layouts.tournament')
 @section('content')
 
-    <div class="row">
+<script src="{{ asset('js/jquery-3.4.1.js') }}"></script>
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap4.0.0.min.js') }}"></script>
+
+<!-- Add Players Modal -->
+<div class="modal fade" id="addplayermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Players</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+  <form id="addplayerform" action="#" method="">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+  <div class="modal-body">
+    <div class="form-group">
+    <label for="totalplayers">Total Players</label>
+    <input autofocus type="number" class="form-control" id="totalplayers" name="totalplayers" aria-describedby="emailHelp" placeholder="Enter Total Players" required>
+  </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="saveNewPlayer" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+   </form>
+
+  </div>
+  </div>
+</div>
+<!-- End Add Player Modal -->
+ 
+<!-- Minus Players Modal -->
+<div class="modal fade" id="minusplayermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Minus Players</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+  <form id="minusplayerform" action="#" method="">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+  <div class="modal-body">
+    <div class="form-group">
+    <label for="totalplayers">Total Players</label>
+    <input autofocus type="number" class="form-control" id="mplayers" name="mplayers" aria-describedby="emailHelp" placeholder="Enter Total Players" required>
+  </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="saveMinusPlayer" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+   </form>
+
+  </div>
+  </div>
+</div>
+<!-- End Minus Player Modal -->
+
+<!-- Rebuy Modal -->
+<div class="modal fade" id="updaterebuymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Rebuys</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+  <form id="addrebuyform" action="#" method="">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+  <div class="modal-body">
+  <div class="form-group">
+    <label for="totalrebuys">Total Rebuys</label>
+    <input autofocus type="number" class="form-control" id="totalrebuys" name="totalrebuys" placeholder="Enter Total Rebuys" required>
+  </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="saveRebuy" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+   </form>
+
+  </div>
+  </div>
+</div>
+<!-- End Rebuy Modal -->
+
+    <div class="row" >
         <div class="col-sm-3"><!--left col-->
         <ul class="list-group">
-            <li class="list-group-item" style="font-size: 30px; background: black; color: white; font-family:'digital-clock-font'"><b>ECP - SATURDAY TOURNAMENT</b><button style="padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-md btn-success pull-right"><i class="glyphicon glyphicon-refresh"></i></button></li>
-            <li class="list-group-item text-right" ><span class="pull-left" style="font-size: 25px;"><strong>Players</strong></span><b style="font-size: 25px; color:#0a0;"><input style="text-align: center; width:50px; border:0;" value="0" id="players">&nbsp&nbsp</b> 
-                 <button type="button" class="btn btn-xs btn-danger" id="moins" onclick="minus()"><i class="glyphicon glyphicon-minus"></i></button>
-                 <button type="button" class="btn btn-xs btn-primary" id="plus" onclick="plus()"><i class="glyphicon glyphicon-plus"></i></button>
+           <li class="list-group-item" style="font-size: 30px; background: black; color: white;"><b>SAT - TOURNAMENT</b><span class="pull-right"><a href="{{ url('/sresetalletournament') }}"><button id="resetall" type="button"  class="btn btn-sm btn-success"><i class="glyphicon glyphicon-refresh" title="Reset All"></i></button></a></span></li>
+ 
+            <li class="list-group-item text-right" ><span class="pull-left" style="font-size: 25px;"><strong id="tplayer">Players</strong></span><b><input id="inputplayer" value="{{ $buyin->totalplayers }}" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b></b>&nbsp;&nbsp;&nbsp;
+ 
+                 <button  data-toggle="modal" data-target="#minusplayermodal" type="button"  class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button>
+                 <button data-toggle="modal" data-target="#addplayermodal" type="button" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
+                </li>
 
-            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Rebuys</strong></span><b style="font-size: 25px; color:#0a0;"><input style="text-align: center; width:50px; border:0;" value="0" id="rebuy">&nbsp&nbsp</b> 
-                <button type="button" class="btn btn-xs btn-danger" id="moins1" onclick="minus1()"><i class="glyphicon glyphicon-minus"></i></button>
-                 <button type="button" class="btn btn-xs btn-primary" id="plus1" onclick="plus1()"><i class="glyphicon glyphicon-plus"></i></button></li>
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Rebuys</strong></span><b><input id="inputRebuy" value="{{ $buyin->totalbuyer }}" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b>&nbsp;&nbsp;&nbsp;<button  data-toggle="modal" data-target="#updaterebuymodal" type="button"  class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button></li>
     
-              <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Ave. Chips</strong></span><b><input value="0"  id="average" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b> </li>
+              <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Ave. Chips</strong></span><b><input id="avechips" value="{{ number_format($buyin->averagechips) }}" style="text-align: right; border:0px; width:200px; font-size: 25px;"></b> </li>
           
-             <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Total Chips</strong></span><b><input type="text" value="0" id="tchips" name="tchips" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b> </li>
-           
+             <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Total Chips</strong></span><b><input id="totalchips" type="text" value="{{ number_format($buyin->totalchips) }}" id="tchips" name="tchips" style="text-align: right; border:0px; width:200px; font-size: 25px;"></b> </li>
           </ul> 
 
-         
-          <ul class="list-group">
-            <li class="list-group-item" style="font-size: 30px; background: black; color: white; font-family:'digital-clock-font'"><b>CHIPS</b><span class="pull-right"><b>VALUE</b></span>  <!-- <button data-toggle="modal" data-target="" type="button" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i></button> --></li>
-            <li class="list-group-item text-right"><span class="pull-left"><img src="{{asset('tournamentchips/10.png')}}" style="height: 70px; width: 70px;" class="avatar img-circle img-thumbnail" alt="avatar"></span><b style="font-size: 45px; color:black;">10</b></li>
-             <li class="list-group-item text-right"><span class="pull-left"><img src="{{asset('tournamentchips/t5.png')}}" style="height: 70px; width: 70px;" class="avatar img-circle img-thumbnail" alt="avatar"></span><b style="font-size: 45px; color:black;">25</b></li>
-             
-                 <li class="list-group-item text-right"><span class="pull-left"><img src="{{asset('tournamentchips/100.png')}}" style="height: 70px; width: 70px;" class="avatar img-circle img-thumbnail" alt="avatar"></span><b style="font-size: 45px; color:black;">100</b></li>
-
-                   <li class="list-group-item text-right"><span class="pull-left"><img src="{{asset('tournamentchips/1000.png')}}" style="height: 70px; width: 70px;" class="avatar img-circle img-thumbnail" alt="avatar"></span><b style="font-size: 45px; color:black;">1000</b></li>
-
-                   <li class="list-group-item text-right"><span class="pull-left"><img src="{{asset('tournamentchips/10000.png')}}" style="height: 70px; width: 70px;" class="avatar img-circle img-thumbnail" alt="avatar"></span><b style="font-size: 45px; color:black;">10,000</b></li>
-          </ul> 
-        </div><!--/col-3 left-->
+            <ul class="list-group"><!-- Chips Section -->
+            <li class="list-group-item" style="font-size: 30px; background: black; color: white;"><b>CHIPS</b><span class="pull-right"><b>VALUE</b></span></li>
+            @foreach($chips as $chips)
+            <li data-toggle="modal" data-target="#v1" type="button" class="list-group-item text-right"><span class="pull-left" ><img title="Click to Preview" src="{{asset('uploads')}}/{{$chips->images}}" style="height: 70px; width: 70px;" class="avatar img-circle img-thumbnail" alt="avatar"></span><b style="font-size: 45px; color:black;">{{number_format($chips->value)}}</b></li>
+              @endforeach
+              </ul> <!-- End Chips Section -->
+        </div><!--/col-3-->
 
 
-        <div class="col-sm-6"><!-- center col 6 -->
+        <div class="col-sm-5"><!-- col 5 -->
           <form style="border: 4px solid #a1a1a1;margin-top: 0px;padding: 20px;">
               <center>
-                <h1 id="round" style="margin-bottom: -50px; font-size: 50px; color: white;">{{ $firstTournament->level }}</h1>
-                <div class="clock" style="font-size: 200px; color:#0a0; font-family:'digital-clock-font'">{{ $duration->in_minutes }}</div>
+                <h1 id="round" style="margin-bottom: -50px; font-size: 60px; color: white;">{{ $timertournament[0]->level }}</h1>
+                <div id="clocker" class="clock" style="font-size: 200px; color:#0a0; font-family:'digital-clock-font'">{{ gmdate("i:s", $timertournament[0]->in_seconds ) }}</div>
                 
-                <div id="poker_blinds" style="margin-top: -65px; margin-bottom: 20px; font-size: 35px; ">
-                  <div class="blinds" style="font-size: 45px; color:white; ">
-                    <span class="small-blind">{{ $blindParts['small'] }}</span>
-                    <span class="separator">/</span>
-                    <span class="big-blind">{{ $blindParts['big'] }}</span>
-                  </div>
-                  <span style="font-size: 35px; color:black;"></span><!-- blinds -->
+                <div id="poker_blinds" style="margin-top: -65px; margin-bottom: 20px; font-size: 60px; color:white;">{{ $timertournament[0]->blinds }}
                 </div><br>
 
                 <button type="button" class="btn btn-md btn-primary" id="poker_play_pause">
@@ -57,94 +145,126 @@
                 <span style="margin-left: 50px;"></span>
                 <button type="button" class="btn btn-md btn-success" id="poker_next_round"><i class="glyphicon glyphicon-arrow-right"></i> Next</button>
                 <span style="margin-left: 50px;"></span>
-                <button type="button" class="btn btn-md btn-warning reset"><i class="glyphicon glyphicon-refresh"></i> Reset</button></center>
-          </form><br>
+                <button type="button" class="btn btn-md btn-warning reset" onclick='refreshPage()'><i class="glyphicon glyphicon-refresh"></i> Reset</button>
+              </center> </form><br>
               
-              <!-- Level Group -->
-              <ul id="pagination" class="list-group posts endless-pagination" data-next-page="{{ $posts->nextPageUrl() }}">
-                <li class="list-group-item text-muted" style="font-size: 30px; background: black; color: white; font-family:'digital-clock-font'"><b>LEVELS</b><span class="pull-right"><b>BLINDS</b></span></li>
-                
-                @foreach ($posts as $post)
+                <ul id="pagination" class="list-group posts endless-pagination"><!-- LEVEL SECTION -->
+                <li class="list-group-item text-muted" style="font-size: 30px; background: black; color: white;"><b>LEVELS - BLINDS</b><span class="pull-right"><b>TIME - (MIN:SEC)</b></span></li>
+            
+                  <li class="list-group-item text-center" style="font-size: 30px; color:#0a0; font-family:'digital-clock-font"><b>CURRENT LEVEL</b></li>
                   <li class="list-group-item text-right">
                     <span class="pull-left">
                       <span class="pull-left">
-                        <strong style="font-size: 25px;">{{ $post->level }}</strong>
+                        <strong id="currentlevel1" style="font-size: 30px;">{{ $timertournament[0]->level }} - {{ $timertournament[0]->blinds }}</strong>
                       </span>
-                    </span><b  style="font-size: 25px;">{{ $post->blinds }}</b>
+                    </span><strong id="currentlevel2" style="font-size: 30px;">{{ gmdate("i:s", $timertournament[0]->in_seconds ) }}</strong>
                   </li>
-                @endforeach
-  
-              <center>{!! $posts->render() !!}</center>
 
-              </ul>  
-
-
-        <script>
-
-        $(document).ready(function() {
-
-            $('body').on('click', '#pagination', function(e){
-
-                e.preventDefault();
-                var url = $(this).attr('href');
-
-                $.get(url, function(data){
-                    $('.posts').html(data);
-                });
-
-            });
-
-        })
-
-        </script>
-
-        </div><!--/end center col-6-->
+                   <li class="list-group-item text-center" style="font-size: 30px; color:#0a0; font-family:'digital-clock-font"><b>NEXT LEVEL</b></li>
+                  <li class="list-group-item text-right">
+                    <span class="pull-left">
+                      <span class="pull-left">
+                        <strong id="nextlevel1" style="font-size: 30px;">{{ $timertournament[1]->level }} - {{ $timertournament[1]->blinds }}</strong>
+                      </span>
+                    </span><strong id="nextlevel2" style="font-size: 30px;">{{ gmdate("i:s", $timertournament[1]->in_seconds ) }}</strong>
+                  </li>
+                  </ul><!-- END LEVEL SECTION -->
+            </div><!--/col-5-->
 
 
-        <div class="col-sm-3"><!-- right col 3 -->
+        <div class="col-sm-4"><!-- col 4 -->
             <ul class="list-group">
-            <?php $tp = number_format($prize->totalprize); ?>
-            <li class="list-group-item" style="background: black;"><b style="font-size: 30px; color: white; font-family:'digital-clock-font'">PRIZE MONEY</b><b><input class="pull-right" style="text-align: right; height: 40px; width: 250px; font-size: 35px; background: black; border: none; color: red;" disabled="" value="Php {{$tp}}"></b>
+              <?php $tp = number_format($prize->totalprize); ?>
+            <li class="list-group-item" style="background: black;"><b style="font-size: 30px; color: white;">PRIZE MONEY</b><b><input id="potmoney" class="pull-right" style="text-align: right; height: 40px; width: 250px; font-size: 35px; background: black; border: none; color: red;" disabled="" value="Php {{ number_format($prize->totalprize) }}"></b>
 
-            @foreach($prizemoney as $prizemoney)
             <?php 
-            $tchips = $prize->totalprize;
-            $nprize = $prizemoney->amount;
-            $total = $tchips*$nprize;
-            $result = number_format($total);
-            ?>
+            $tchips1 = $prize->totalprize;
+            $nprize1 = $prizemoney[0]->amount;
+            $total1 = $tchips1*$nprize1;
+            $result1 = number_format($total1);
 
-            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney->place}}</strong></span><b style="font-size: 30px; color:black;">Php {{ $result }}</b></li>
-            @endforeach
+            $tchips2 = $prize->totalprize;
+            $nprize2 = $prizemoney[1]->amount;
+            $total2 = $tchips2*$nprize2;
+            $result2 = number_format($total2);
 
+            $tchips3 = $prize->totalprize;
+            $nprize3 = $prizemoney[2]->amount;
+            $total3 = $tchips3*$nprize3;
+            $result3 = number_format($total3);
+
+            $tchips4 = $prize->totalprize;
+            $nprize4 = $prizemoney[3]->amount;
+            $total4 = $tchips4*$nprize4;
+            $result4 = number_format($total4);
+
+            $tchips5 = $prize->totalprize;
+            $nprize5 = $prizemoney[4]->amount;
+            $total5 = $tchips5*$nprize5;
+            $result5 = number_format($total5);
+
+            $tchips6 = $prize->totalprize;
+            $nprize6 = $prizemoney[5]->amount;
+            $total6 = $tchips6*$nprize6;
+            $result6 = number_format($total6);
+
+            $tchips7 = $prize->totalprize;
+            $nprize7 = $prizemoney[6]->amount;
+            $total7 = $tchips7*$nprize7;
+            $result7 = number_format($total7);
+
+            $tchips8 = $prize->totalprize;
+            $nprize8 = $prizemoney[7]->amount;
+            $total8 = $tchips8*$nprize8;
+            $result8 = number_format($total8);
+
+            $tchips9 = $prize->totalprize;
+            $nprize9 = $prizemoney[8]->amount;
+            $total9 = $tchips9*$nprize9;
+            $result9 = number_format($total9);
+
+            $tchips10 = $prize->totalprize;
+            $nprize10 = $prizemoney[9]->amount;
+            $total10 = $tchips10*$nprize10;
+            $result10 = number_format($total10);
+           ?>
+
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[0]->place}}</strong></span><b><input id="prize1" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result1 }}"></b></li>
+            
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[1]->place}}</strong></span><b><input id="prize2" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result2 }}"></b></li>
+
+             <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[2]->place}}</strong></span><b><input id="prize3" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result3 }}"></b></li>
+
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[3]->place}}</strong></span><b><input id="prize4" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result4 }}"></b></li>
+
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[4]->place}}</strong></span><b><input id="prize5" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result5 }}"></b></li>
+
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[5]->place}}</strong></span><b><input id="prize6" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result6 }}"></b></li>
+
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[6]->place}}</strong></span><b><input id="prize7" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result7 }}"></b></li>
+
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[7]->place}}</strong></span><b><input id="prize8" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result8 }}"></b></li>
+
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[8]->place}}</strong></span><b><input id="prize9" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result9 }}"></b></li>
+
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$prizemoney[9]->place}}</strong></span><b><input id="prize10" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result10 }}"></b></li>
             </ul> 
-            </div><!--/end right col-3-->
+        </div><!--/col-4-->
 
+        </div> 
+      </div><!--/tab-pane-->
+      </div><!--/tab-content-->
     </div><!--/row-->
                                                       
-    <audio id="soundHandle" style="display: none;"></audio><!-- Alert sound for Timer -->
+    <audio id="soundHandle" style="display: none;"></audio>
 
-    
-
-
-
-<!-- Contdown Timer Logic Javascirpt -->
 @push('custom-scripts')
-
 <script type="text/javascript">
   var Poker = (function () {
-    var round = 1;
-    var duration = '{{ $duration->in_seconds }}';
+    var round = 0;
+    var timerindex = 0;
+    var duration = '{{ $timertournament[0]->in_seconds }}';
     var timer = duration;
-        
-    {{-- {{ dd(json_encode($allBlinds)) }} --}}
-
-    var blinds = '{!! json_encode($allBlinds) !!}';
-
-    blinds = JSON.parse(blinds);
-
-    console.log(blinds);
-
     var interval_id;
     
     return {
@@ -154,24 +274,17 @@
       playAlarm: function () {
         soundHandle.src = '{{asset('sound/alertnext1.mp3')}}';
         soundHandle.play();
-
       },
       reset: function () {
         // reset timer
         this.resetTimer();
-        
         this.stopClock();
-        
         this.updateClock(timer);
-        
         // reset play/pause button
         this.updatePlayPauseButton();
-        
         // reset round
         round = 1;
-        
         this.updateRound(round);
-        
         // increase blinds
         this.updateBlinds(round);
       },
@@ -180,7 +293,6 @@
       },
       startClock: function () {
         var that = this;
-        
         interval_id = setInterval(function () {
           that.updateClock(timer);
           
@@ -190,19 +302,39 @@
       startNextRound: function () {
         // reset timer
         this.resetTimer();
-        
         this.stopClock();
-        
-        this.updateClock(timer);
-        
+     // increase round
+        round += 1;
+        switch (round){
+          case 0:
+            timer =  '{{ $timertournament[0]->in_seconds }}';
+            this.updateClock(timer);
+            break;
+          case 1:
+            timer =  '{{ $timertournament[1]->in_seconds }}';
+            this.updateClock(timer);
+            break;
+          case 2:
+            timer =  '{{ $timertournament[2]->in_seconds }}';
+            this.updateClock(timer);
+            break;
+          case 3:
+            timer =  '{{ $timertournament[3]->in_seconds }}';
+            this.updateClock(timer);
+            break;
+          case 4:
+            timer =  '{{ $timertournament[4]->in_seconds }}';
+            this.updateClock(timer);
+            break;
+         
+          default:
+            timer = 0; 
+            this.updateClock(timer);
+            break;
+        }
         // reset play/pause button
         this.updatePlayPauseButton();
-        
-        // increase round
-        round += 1;
-        
         this.updateRound(round);
-        
         // increase blinds
         this.updateBlinds(round);
       },
@@ -211,33 +343,45 @@
         interval_id = undefined;
       },
       updateBlinds: function (round) {
-        var round_blinds = blinds[round - 1] || blinds[blinds.length];
-        
-        $('.small-blind').html(round_blinds.small);
-        $('.big-blind').html(round_blinds.big);
+
+          switch (round){
+          case 0:
+            $('#poker_blinds').html('{{ $timertournament[0]->blinds }}');
+            break;
+          case 1:
+            $('#poker_blinds').html('{{ $timertournament[1]->blinds }}');
+            break;
+          case 2:
+            $('#poker_blinds').html('{{ $timertournament[2]->blinds }}');
+            break;
+          case 3:
+            $('#poker_blinds').html('<b style="color:red;">'+'{{ $timertournament[3]->blinds }}'+'</b>');
+            break;
+          case 4:
+            $('#poker_blinds').html('{{ $timertournament[4]->blinds }}');
+            break;
+          case 5:
+            $('#poker_blinds').html('{{ $timertournament[5]->blinds }}');
+            break;
+         
+        }
+
       },
       updateClock: function (timer) {
         var minute = Math.floor(timer / 60),
             second = (timer % 60) + "",
             second = second.length > 1 ? second : "0" + second;
-          
         $('.clock').html(minute + ":" + second);
-        
         if (timer <= 0) {
-
           this.startNextRound();
-          
           this.playAlarm();
-          
           this.startClock();
-          
           // update play/pause button
           this.updatePlayPauseButton();
         }
       },
       updatePlayPauseButton: function () {
         var pause_play_button = $('#poker_play_pause a');
-        
         if (this.isGamePaused()) {
           pause_play_button.removeClass('pause');
           pause_play_button.addClass('play');
@@ -247,7 +391,49 @@
         }
       },
       updateRound: function (round) {
-        $('#round').html('Level' + ' ' + round);
+
+        switch (round){
+          case 0:
+            $('#round').html('{{ $timertournament[0]->level }}');
+            $('#currentlevel1').html('{{ $timertournament[0]->level }}'+' - '+'{{ $timertournament[0]->blinds }}');
+            $('#currentlevel2').html('{{ gmdate("i:s", $timertournament[0]->in_seconds ) }}');
+            $('#nextlevel1').html('{{ $timertournament[1]->level }}'+' - '+'{{ $timertournament[1]->blinds }}');
+            $('#nextlevel2').html('{{ gmdate("i:s", $timertournament[1]->in_seconds ) }}');
+            break;
+          case 1:
+            $('#round').html('{{ $timertournament[1]->level }}');
+            $('#currentlevel1').html('{{ $timertournament[1]->level }}'+' - '+'{{ $timertournament[1]->blinds }}');
+            $('#currentlevel2').html('{{ gmdate("i:s", $timertournament[1]->in_seconds ) }}');
+            $('#nextlevel1').html('{{ $timertournament[2]->level }}'+' - '+'{{ $timertournament[2]->blinds }}');
+            $('#nextlevel2').html('{{ gmdate("i:s", $timertournament[2]->in_seconds ) }}');
+            break;
+          case 2:
+            $('#round').html('{{ $timertournament[2]->level }}');
+            $('#currentlevel1').html('{{ $timertournament[2]->level }}'+' - '+'{{ $timertournament[2]->blinds }}');
+            $('#currentlevel2').html('{{ gmdate("i:s", $timertournament[2]->in_seconds ) }}');
+            $('#nextlevel1').html('{{ $timertournament[3]->level }}'+' - '+'{{ $timertournament[3]->blinds }}');
+            $('#nextlevel2').html('{{ gmdate("i:s", $timertournament[3]->in_seconds ) }}');
+            break;
+          case 3:
+            $('#round').html('<b style="color:red;">'+'{{ $timertournament[3]->level }}'+'</b>');
+             $('#currentlevel1').html('{{ $timertournament[3]->level }}'+' - '+'{{ $timertournament[3]->blinds }}');
+            $('#currentlevel2').html('{{ gmdate("i:s", $timertournament[3]->in_seconds ) }}');
+            $('#nextlevel1').html('{{ $timertournament[4]->level }}'+' - '+'{{ $timertournament[4]->blinds }}');
+            $('#nextlevel2').html('{{ gmdate("i:s", $timertournament[4]->in_seconds ) }}');
+            break;
+          case 4:
+            $('#round').html('{{ $timertournament[4]->level }}');
+             $('#currentlevel1').html('{{ $timertournament[4]->level }}'+' - '+'{{ $timertournament[4]->blinds }}');
+            $('#currentlevel2').html('{{ gmdate("i:s", $timertournament[4]->in_seconds ) }}');
+            $('#nextlevel1').html('{{ $timertournament[5]->level }}'+' - '+'{{ $timertournament[5]->blinds }}');
+            $('#nextlevel2').html('{{ gmdate("i:s", $timertournament[5]->in_seconds ) }}');
+            break;
+          case 5:
+            $('#round').html('{{ $timertournament[5]->level }}');
+             $('#currentlevel1').html('{{ $timertournament[5]->level }}'+' - '+'{{ $timertournament[5]->blinds }}');
+            $('#currentlevel2').html('{{ gmdate("i:s", $timertournament[5]->in_seconds ) }}');
+            break;
+        }
       }
     };
   }());
@@ -257,14 +443,11 @@
       $('#poker_play_pause').removeClass('btn-primary');
       $('#poker_play_pause').addClass('btn-danger');
       $('#play_pause_div').html('Pause');
-
       Poker.startClock();
     } else {
       blueButtonPlay();
-
       Poker.stopClock();
     }
-    
     // update play/pause button
     Poker.updatePlayPauseButton();
   });
@@ -280,17 +463,8 @@
     } else {
       Poker.stopClock();
     }
-    
     // update play/pause button
     Poker.updatePlayPauseButton();
-  });
-
-
-  $('.reset').on('click', function (event) {
-    if (confirm('Are you sure you want to reset?')){
-      blueButtonPlay();
-      Poker.reset();
-    }
   });
 
   function blueButtonPlay()
@@ -299,46 +473,94 @@
     $('#poker_play_pause').addClass('btn-primary');
     $('#play_pause_div').html('Play');
   }
+
+ /*DAILY TOURNAMENT*/  
+  $('#saveNewPlayer').click(function(event) { 
+    /* Act on the event */
+    var totalplayers = $('#totalplayers').val();
+
+    $.ajax({
+      url: '{{ route('saddplayer') }}',
+      type: 'post',
+      dataType: 'json',
+      data: {
+        _token : '{{ csrf_token() }}',
+        totalplayers : totalplayers
+      },
+      success: function (data) {
+          $('#inputplayer').val(data.total);
+          $('#avechips').val(data.ave);
+          $('#totalchips').val(data.tchips);
+
+          $('#addplayermodal').modal('hide');
+      }
+    });
+  });
+
+  $('#saveMinusPlayer').click(function(event) {
+    /* Act on the event */
+    var mplayers = $('#mplayers').val();
+    $.ajax({
+        url: '{{ route('sminusplayer') }}',
+        type: 'post',
+        dataType: 'json',
+        data: {
+          _token : '{{ csrf_token() }}',
+          mplayers : mplayers
+        },
+        success: function (data) {
+          $('#inputplayer').val(data.total);
+          $('#avechips').val(data.ave);
+          $('#totalchips').val(data.tchips);
+
+          $('#minusplayermodal').modal('hide');
+        }
+    });
+  });
+
+  $('#saveRebuy').click(function(event) {
+    /* Act on the event */
+     var totalrebuys = $('#totalrebuys').val();
+     // console.log(totalrebuys);
+     $.ajax({
+       url: '{{ route('srebuy') }}',
+       type: 'post',
+       dataType: 'json',
+       data: {
+          _token : '{{ csrf_token() }}',
+          totalrebuys : totalrebuys
+       },
+       success: function (data) {
+          console.log(data);
+          $('#inputRebuy').val(data.total);
+          $('#avechips').val(data.ave);
+          $('#totalchips').val(data.tchips);
+          $('#potmoney').val(data.potmoney);
+          $('#prize1').val(data.total101);
+          $('#prize2').val(data.total102);
+          $('#prize3').val(data.total103);
+          $('#prize4').val(data.total104);
+          $('#prize5').val(data.total105);
+          $('#prize6').val(data.total106);
+          $('#prize7').val(data.total107);
+          $('#prize8').val(data.total108);
+          $('#prize9').val(data.total109);
+          $('#prize10').val(data.total110);
+
+          $('#updaterebuymodal').modal('hide');
+       }
+     });
+  });
+/*Refresh the Levels*/
+   function refreshPage(){
+        if(confirm("Are you sure want to reset?")){
+          location.reload();
+        }       
+      }
 </script>
 @endpush
-<!-- End Contdown Timer Logic Javascirpt -->
 
-<script type="text/javascript">
-  //Players
-    var count = 0;
-    var countEl = document.getElementById("players");
-    function plus(){
-        count++;
-        countEl.value = count;
-    }
-    function minus(){
-      if (count >= 1) {
-        count--;
-        countEl.value = count;
-      }  
-    }
-
-//Rebuys
-    var count1 = 0;
-    var countEl1 = document.getElementById("rebuy");
-
-     function plus1(){
-        count1++;
-        countEl1.value = count1;
-    }
-    function minus1(){
-      if (count1 >= 1) {
-        count1--;
-        countEl1.value = count1;
-      }  
-    }
-</script>
-
-
-
-
-<style type="text/css">
-  
+<style type="text/css">  
   /* @group Blink */
 .blink {
   -webkit-animation: blink .75s linear infinite;
@@ -377,14 +599,12 @@
   50.01% { opacity: 0; }
   100% { opacity: 0; }
 }
-
-
 @font-face{
   font-family: 'digital-clock-font';
   src: url('../../font/digital-7 (mono).ttf');
 }
-
 </style>
 
 @endsection
+
 

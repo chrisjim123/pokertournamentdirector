@@ -5,7 +5,7 @@
         <section class="content-header">
           <h1>
             Chips Controller
-            <small>Daily Tournament</small>
+            <small>Saturday Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
@@ -40,12 +40,12 @@ function current_page($uri = "/") {
 
         <div class="col-sm-12">
              <ul class="nav nav-tabs">        
-                <li {{ (current_page("eplayersview")) ? 'class=active' : '' }}><a href="{{ url('/eplayersview') }}">Players</a></li> 
-                <li {{ (current_page("ebuyinview")) ? 'class=active' : '' }}><a href="{{ url('/ebuyinview') }}">Buyin</a></li>
-                <li {{ (current_page("echipsview")) ? 'class=active' : '' }}><a href="#">Chips</a></li>
-                <li {{ (current_page("elevelview")) ? 'class=active' : '' }}><a href="{{ url('/elevelview') }}">Level</a></li>
-                <li {{ (current_page("epotmoneyview")) ? 'class=active' : '' }}><a href="{{ url('/epotmoneyview') }}">Pot Money</a></li>
-                <li {{ (current_page("prizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/prizemoneyview') }}">Percent Prize</a></li>
+                <li {{ (current_page("splayersview")) ? 'class=active' : '' }}><a href="{{ url('/splayersview') }}">Players</a></li> 
+                <li {{ (current_page("sbuyinview")) ? 'class=active' : '' }}><a href="{{ url('/sbuyinview') }}">Buyin</a></li>
+                <li {{ (current_page("schipsview")) ? 'class=active' : '' }}><a href="#">Chips</a></li>
+                <li {{ (current_page("slevelview")) ? 'class=active' : '' }}><a href="{{ url('/slevelview') }}">Level</a></li>
+                <li {{ (current_page("spotmoneyview")) ? 'class=active' : '' }}><a href="{{ url('/spotmoneyview') }}">Pot Money</a></li>
+                <li {{ (current_page("prizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/sprizemoneyview') }}">Percent Prize</a></li>
                    
               </ul>
                 
@@ -55,7 +55,7 @@ function current_page($uri = "/") {
                 <div class="col-xs-12">
                   <div class="box">
                     <div class="box-header">
-                     <h3 class="box-title">Chips View Data</h3> <button name="updatelevel" value="" class="btn btn-md btn-primary pull-right" type="submit"><i class="glyphicon glyphicon-plus"></i><a style="color:white;" href="{{ url('/addnewchips')}}"> Add New Chips</a></button>
+                     <h3 class="box-title">Chips View Data</h3> <button name="updatelevel" value="" class="btn btn-md btn-primary pull-right" type="submit"><i class="glyphicon glyphicon-plus"></i><a style="color:white;" href="{{ url('/saddnewchips')}}"> Add New Chips</a></button>
                       </div><!-- /.box-header -->
                         <div class="box-body">
                           <table id="example2" class="table table-bordered table-hover">
@@ -67,11 +67,11 @@ function current_page($uri = "/") {
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach($echips as $chips)
+                            @foreach($chips as $chips)
                               <tr>
-                                <td><img style="width:100px; height:100px;" src="{{asset('uploads')}}/{{$chips->images}}" class="avatar img-circle img-thumbnail" alt="avatar"></td>
+                                <td><img style="width:100px; height:100px;" src="{{asset('uploads/saturday')}}/{{$chips->images}}" class="avatar img-circle img-thumbnail" alt="avatar"></td>
                                 <td>{{ $chips->value }}</td>
-                                <td><button name="updatechips" value="" class="btn btn-md btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i><a style="color:white;" href="#"><a style="color:white;" href="{{ url('/updatechipsview')}}/{{$chips->id}}"> Update</a></button><button class="btn btn-md btn-danger" type="submit"><i class="glyphicon glyphicon-trash"></i><a style="color:white;" href="{{url('/delchips')}}/{{$chips->id}}"> Delete</a></button></td>
+                                <td><button name="updatechips" value="" class="btn btn-md btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i><a style="color:white;" href="#"><a style="color:white;" href="{{ url('/supdatechipsview')}}/{{$chips->id}}"> Update</a></button><button class="btn btn-md btn-danger" type="submit"><i class="glyphicon glyphicon-trash"></i><a style="color:white;" href="{{url('/sdelchips')}}/{{$chips->id}}"> Delete</a></button></td>
                               </tr>
                            @endforeach
 

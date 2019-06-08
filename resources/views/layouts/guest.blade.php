@@ -153,10 +153,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Sidebar user panel (optional) -->
 
           <div class="user-panel">
-            <span class="pull-center">
+            <div class="text-center image">
               <center><img style="height: 150px; width: 150px;" src="{{asset('Emperor City Poker Header.jpg')}}"class="avatar img-circle img-thumbnail" alt="avatar"></center>
-            </span>
-        
+          </div>
           </div>
 
           <!-- search form (Optional) -->
@@ -183,17 +182,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="{{ url('/echipsview') }}">Chips</a></li>
                 <li><a href="{{ url('/elevelview') }}">Level</a></li>
                 <li><a href="{{ url('/epotmoneyview') }}">Pot Money</a></li>
+                <li><a href="{{ url('/prizemoneyview') }}">Percent Prize</a></li>
              
               </ul>
             </li>
             <li class="treeview">
               <a href="#"><i class="fa fa-hourglass-start"></i> <span>Saturday Tournament</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Players</a></li>
-                <li><a href="#">Buyin</a></li>
-                <li><a href="#">Chips</a></li>
-                <li><a href="#">Level</a></li>
-                <li><a href="#">Pot Money</a></li>
+                <li><a href="{{ url('/splayersview') }}">Players</a></li>
+                <li><a href="{{ url('/sbuyinview') }}">Buyin</a></li>
+                <li><a href="{{ url('/schipsview') }}">Chips</a></li>
+                <li><a href="{{ url('/slevelview') }}">Level</a></li>
+                <li><a href="{{ url('/spotmoneyview') }}">Pot Money</a></li>
+                <li><a href="{{ url('/sprizemoneyview') }}">Percent Prize</a></li>
               </ul>
             </li>
             
@@ -275,9 +276,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/app.min.js')}}"></script>
 
-     <!-- fullCalendar 2.2.5 -->
-      <script src="{{ asset('adminlte/plugins/moment.min.js')}}"></script>
-      <script src="{{ asset('adminlte/plugins/fullcalendar/fullcalendar.min.js')}}"></script>
+
+
 
 
   </body>

@@ -5,7 +5,7 @@
         <section class="content-header">
           <h1>
             Pot Money Controller
-            <small>Daily Tournament</small>
+            <small>Saturday Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
@@ -38,24 +38,24 @@ function current_page($uri = "/") {
 
         <div class="col-sm-12">
              <ul class="nav nav-tabs">        
-                <li {{ (current_page("eplayersview")) ? 'class=active' : '' }}><a href="{{ url('/eplayersview') }}">Players</a></li> 
-                <li {{ (current_page("ebuyinview")) ? 'class=active' : '' }}><a href="{{ url('/ebuyinview') }}">Buyin</a></li>
-                <li {{ (current_page("echipsview")) ? 'class=active' : '' }}><a href="{{ url('/echipsview') }}">Chips</a></li>
-                <li {{ (current_page("elevelview")) ? 'class=active' : '' }}><a href="{{ url('/elevelview') }}">Level</a></li>
-                <li {{ (current_page("epotmoneyview")) ? 'class=active' : '' }}><a href="#">Pot Money</a></li>
-                <li {{ (current_page("prizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/prizemoneyview') }}">Percent Prize</a></li>
+                <li {{ (current_page("splayersview")) ? 'class=active' : '' }}><a href="{{ url('/splayersview') }}">Players</a></li> 
+                <li {{ (current_page("sbuyinview")) ? 'class=active' : '' }}><a href="{{ url('/sbuyinview') }}">Buyin</a></li>
+                <li {{ (current_page("schipsview")) ? 'class=active' : '' }}><a href="{{ url('/schipsview') }}">Chips</a></li>
+                <li {{ (current_page("slevelview")) ? 'class=active' : '' }}><a href="{{ url('/slevelview') }}">Level</a></li>
+                <li {{ (current_page("spotmoneyview")) ? 'class=active' : '' }}><a href="#">Pot Money</a></li>
+                <li {{ (current_page("sprizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/sprizemoneyview') }}">Percent Prize</a></li>
 
   
               </ul>
 
                 <hr>
-                  <form class="form" action="{{ url('/updatepotmoney')}}/101" method="post" id="registrationForm" enctype="multipart/form-data">
+                  <form class="form" action="{{ url('/supdatepotmoney')}}/101" method="post" id="registrationForm" enctype="multipart/form-data">
                            {{ csrf_field() }}
 
                       <div class="form-group">
                           <div class="col-xs-3">
                               <label for="potmoney"><h4>Pot Money</h4></label>
-                              <input style="border:none; background:white;" value="{{ $epotprize->totalprize }}" type="number" class="form-control" name="potmoney"  placeholder="Enter Pot Money" required="">
+                              <input style="border:none; background:white;" value="{{ $spotprize->totalprize }}" type="number" class="form-control" name="potmoney"  placeholder="Enter Pot Money" required="">
                           </div>
                       </div>
                     

@@ -5,7 +5,7 @@
         <section class="content-header">
           <h1>
             Level Controller
-            <small>Daily Tournament</small>
+            <small>Saturday Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
@@ -38,12 +38,12 @@ function current_page($uri = "/") {
 
         <div class="col-sm-12">
              <ul class="nav nav-tabs">        
-                <li {{ (current_page("eplayersview")) ? 'class=active' : '' }}><a href="{{ url('/eplayersview') }}">Players</a></li> 
-                <li {{ (current_page("ebuyinview")) ? 'class=active' : '' }}><a href="{{ url('/ebuyinview') }}">Buyin</a></li>
-                <li {{ (current_page("echipsview")) ? 'class=active' : '' }}><a href="{{ url('/echipsview') }}">Chips</a></li>
-                <li {{ (current_page("elevelview")) ? 'class=active' : '' }}><a href="#">Level</a></li>
-                <li {{ (current_page("epotmoneyview")) ? 'class=active' : '' }}><a href="{{ url('/epotmoneyview') }}">Pot Money</a></li>
-                <li {{ (current_page("prizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/prizemoneyview') }}">Percent Prize</a></li>
+                <li {{ (current_page("splayersview")) ? 'class=active' : '' }}><a href="{{ url('/splayersview') }}">Players</a></li> 
+                <li {{ (current_page("sbuyinview")) ? 'class=active' : '' }}><a href="{{ url('/sbuyinview') }}">Buyin</a></li>
+                <li {{ (current_page("schipsview")) ? 'class=active' : '' }}><a href="{{ url('/schipsview') }}">Chips</a></li>
+                <li {{ (current_page("slevelview")) ? 'class=active' : '' }}><a href="#">Level</a></li>
+                <li {{ (current_page("spotmoneyview")) ? 'class=active' : '' }}><a href="{{ url('/spotmoneyview') }}">Pot Money</a></li>
+                <li {{ (current_page("sprizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/sprizemoneyview') }}">Percent Prize</a></li>
                    
               </ul>
 
@@ -67,12 +67,12 @@ function current_page($uri = "/") {
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach($elevel as $level)
+                              @foreach($slevel as $level)
                               <tr name="{{ $level->id }}">
                                 <td>{{ $level->level }}</td>
                                 <td>{{ $level->blinds }}</td>
                                 <td>{{ $level->in_minutes }}</td>
-                                <td><button name="updatelevel" value="" class="btn btn-md btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i><a style="color:white;" href="{{ url('/updatelevel')}}/{{$level->id}}"> Update</a></button></td>
+                                <td><button name="updatelevel" value="" class="btn btn-md btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i><a style="color:white;" href="{{ url('/supdatelevel')}}/{{$level->id}}"> Update</a></button></td>
                               </tr>
                                @endforeach
 
