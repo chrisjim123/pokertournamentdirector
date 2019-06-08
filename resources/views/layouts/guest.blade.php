@@ -153,9 +153,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Sidebar user panel (optional) -->
 
           <div class="user-panel">
-            <div class="text-center image">
+            <span class="pull-center">
               <center><img style="height: 150px; width: 150px;" src="{{asset('Emperor City Poker Header.jpg')}}"class="avatar img-circle img-thumbnail" alt="avatar"></center>
-          </div>
+            </span>
+        
           </div>
 
           <!-- search form (Optional) -->
