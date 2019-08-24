@@ -2,7 +2,7 @@
 
 @section('content')
 <br><br><br>
-<center><b><h1 style="font-size: 50px; font-family:'digital-clock-font'">ADMINISTRATOR LOGIN</h1></b></center>
+<center><b><h1 style="color:white; font-family:Baskerville Old;">ADMINISTRATOR LOGIN</h1></b></center>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

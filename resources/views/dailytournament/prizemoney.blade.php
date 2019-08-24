@@ -2,23 +2,23 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
-            Prize Money Controller
+            <b style="color:white;">Prize Money Controller</b>
             <small>Daily Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li class="active">Prize Money Controller</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
 
 @section('content')
 
- <div class="card-body">
+          <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -34,8 +34,7 @@ function current_page($uri = "/") {
 }
 ?>
  
-    <div class="row">
-
+    <div class="row"> 
         <div class="col-sm-12">
              <ul class="nav nav-tabs">        
                 <li {{ (current_page("eplayersview")) ? 'class=active' : '' }}><a href="{{ url('/eplayersview') }}">Players</a></li> 
@@ -90,12 +89,10 @@ function current_page($uri = "/") {
                   </div>
 
                 </form>
-   
+    
           </div><!--/tab-pane-->
         </div><!--/col-12-->
     </div><!--/row-->
-                                                      
-@endsection
 
 <style>
 
@@ -108,8 +105,7 @@ function current_page($uri = "/") {
 }
 </style>
 
+                                                      
+@endsection
 
-
-
-
-
+ 

@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Great Emperor Casino Database</title>
+    <title>Emperor City Poker</title>
 
   
   <!-- Tell the browser to be responsive to screen width -->
@@ -104,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <!-- The user image in the navbar-->
                   <img src="{{asset('Emperor City Poker Header.jpg')}}" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                   <!--<span class="hidden-xs">{{ Auth::user()->name }}</span> -->
+                   <span class="hidden-xs">{{ Auth::user()->name }}</span> 
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
@@ -130,11 +130,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </li> -->
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left">
+                <!--     <div class="pull-left">
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
+                    </div> -->
                     <div class="pull-right">
-                        <a href="{{ route('logout') }}" class="btn btn-default btn-flat" style="color:black;"><i class="glyphicon glyphicon-podlock"></i> Sign Out</a>                   
+                        <a href="{{ route('logout') }}" class="btn btn-default btn-flat" style="color:red; box-shadow:0px 1px 2px 2px red; outline:none; border-radius:20px 20px; background:transparent; border:solid transparent;"><i class="glyphicon glyphicon-podlock"></i> Sign Out</a>                   
                     </div>
                   </li>
                 </ul>
@@ -213,13 +213,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper" style="background-image: url('gamebg.png');">
         <!-- Content Header (Page header) -->
 
         @yield('contentheader')
        
    
-        </section>
+      </section>
 
 
 
@@ -232,24 +232,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       <!-- Main Footer -->
@@ -271,11 +253,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div><!-- ./wrapper -->
     
     <!-- jQuery 2.2.3 -->
-<script src="{{ asset('adminlte/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="{{ asset('adminlte/bootstrap/js/bootstrap.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('adminlte/dist/js/app.min.js')}}"></script>
+    <script src="{{ asset('adminlte/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="{{ asset('adminlte/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('adminlte/dist/js/app.min.js')}}"></script>
 
 
 

@@ -56,13 +56,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
  
   </head> 
  
-  <body class="hold-transition skin-yellow sidebar-collapse sidebar-mini" style="background:white;">
+  <body class="hold-transition skin-yellow sidebar-collapse sidebar-mini" style="background-image: url('gamebg.png');">
 
        <!-- Main Header -->
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="{{ url('/') }}" class="logo">
+        <a href="{{ url('/tournament') }}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b><i class="glyphicon glyphicon-home" style="color:black;""></i></b></span>
           <!-- logo for regular state and mobile devices -->
@@ -71,12 +71,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
-                          <marquee><span style="color: white; font-size: 25px; font-family:'digital-clock-font'"><img src="{{ asset('Emperor City Poker Header.jpg') }}" class="avatar img-circle img-thumbnail" alt="avatar" style="width:40px; height: 40px;"> <b>EMPEROR CITY POKER TOURNAMENT - 2nd Floor Gaming Area, Waterfront Airport Hotel and Casino, Lapu-Lapu City Cebu, Philippines</b></span></marquee>
+                          <marquee><span style="color: white; font-size: 25px; font-family:'digital-clock-font'"><img src="{{ asset('Emperor City Poker Header.jpg') }}" class="avatar img-circle img-thumbnail" alt="avatar" style="width:40px; height: 40px;"> <b>EMPEROR CITY POKER - 2nd Floor Gaming Area, Waterfront Airport Hotel and Casino, Lapu-Lapu City Cebu, Philippines</b></span></marquee>
       </header>
 
  
        <!-- Main content -->
-        <section class="content" style="background:white;">
+        <section class="content">
 
 
                @yield('content')

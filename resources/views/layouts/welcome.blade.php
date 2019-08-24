@@ -25,7 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   </head>
  
-  <body class="hold-transition skin-yellow sidebar-collapse sidebar-mini" style="background:white;">
+  <body class="hold-transition skin-yellow sidebar-collapse sidebar-mini" style="background-image: url('gamebg.png');">
 
        <!-- Main Header -->
       <header class="main-header">
@@ -44,7 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </header>
 
        <!-- Main content -->
-        <section class="content" style="background:white;">
+        <section class="content" style="background-image: url('gamebg.png');">
 
           <!-- Your Page Content Here -->
 

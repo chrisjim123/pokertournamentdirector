@@ -2,16 +2,16 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
-            Buyin Controller
+            <b style="color:white;">Buyin Controller</b>
             <small>Saturday Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li class="active">Buyin Controller</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -47,15 +47,14 @@ function current_page($uri = "/") {
                 <li {{ (current_page("sprizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/sprizemoneyview') }}">Percent Prize</a></li>
               </ul>
 
-
-                <hr>
+ 
                   <form class="form" action="{{ url('/supdatebuyin')}}/101" method="post" id="registrationForm" enctype="multipart/form-data">
                            {{ csrf_field() }}
 
                       <div class="form-group">
 
                           <div class="col-xs-3">
-                              <label for="buyin"><h4>Buyin Amount</h4></label>
+                              <label for="buyin"><h4 style="color:white;">Buyin Amount</h4></label>
                               <input style="border:none; background:white;" value="{{ $sbuyin->buyinamount }}" type="number" class="form-control" name="sbuyin"  placeholder="Enter Buyin" required="">
                           </div>
                       </div>
@@ -72,8 +71,6 @@ function current_page($uri = "/") {
           </div><!--/tab-pane-->
         </div><!--/col-12-->
     </div><!--/row-->
-                                                      
-@endsection
 
 <style>
 
@@ -86,7 +83,9 @@ function current_page($uri = "/") {
 }
 </style>
 
-
+                                                      
+@endsection
+ 
 
 
 

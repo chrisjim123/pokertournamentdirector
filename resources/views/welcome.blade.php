@@ -1,29 +1,71 @@
 @extends('layouts.tournamenthome')
 @section('content')
 
-<!-- Small boxes (Stat box) -->
-          <br><br><br>
+       
           <div class="row">
 
-            <div class="col-lg-3 col-xs-3"></div><!-- ./left col 3 -->
+            <div class="col-lg-2 col-xs-2"></div><!-- ./left col 3 -->
 
-            <div class="col-lg-6 col-xs-6"><!-- center col 6 -->
+            <div class="col-lg-8 col-xs-8"><!-- center col 6 -->
               <!-- small box -->
-              <center><b><h1 style="font-size: 50px; font-family:'digital-clock-font'"> <img src="{{ asset('Emperor City Poker Header.jpg') }}" class="avatar img-circle img-thumbnail" alt="avatar" style="width:80px; height: 80px;">  EMPEROR CITY POKER</h1></b></center><hr>
+               <center><img src="{{ asset('Emperor City Poker Header.jpg') }}" class="avatar img-circle img-thumbnail" alt="avatar" style="width:100px; height: 100px;"></center> 
+              <center><b><h1 style=" ; color:white; font-family:Baskerville Old;"> EMPEROR CITY POKER</h1></b></center>
              
-              <!-- small box -->
-            <div class="small-box bg-yellow">
-                <div class="inner">
-                  <p style="font-size:25px;">Administrator</p>
-                </div>
-                <a href="{{ url('/tournament') }}" class="small-box-footer">Sign In <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
-              </div>
+              
+
+
+
+
+<!----------------------------------START SLIDER-------------------------------------------------------------->
+
+ <center><div class="row carousel-holder">
+
+                    <div class="col-md-12" >
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>                 
+                            </ol>
+                            <div class="carousel-inner"  >
+                              <div class="item active" >
+                           
+                                    <img class="slide-image" src="{{asset('homepage.png')}}" alt="">
+                                </div>
+                                <div class="item">
+                                    <img  class="slide-image" src="{{asset('homepage.png')}}" alt="">
+                                </div>
+                                <div class="item">
+                                    <img  class="slide-image" src="{{asset('homepage.png')}}" alt="">
+                                </div>
+                              
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+        
+   
+
+                </div></center>
+
+<!------------------------------END SLIDER------------------------------------------------------>
+
+ 
+
+
 
             </div><!-- ./end center col 6-->
 
-            <div class="col-lg-3 col-xs-3"></div><!-- /right col 3 -->
+            <div class="col-lg-2 col-xs-2"></div><!-- /right col 3 -->
 
           </div><!-- /.row -->
+
 
 
 

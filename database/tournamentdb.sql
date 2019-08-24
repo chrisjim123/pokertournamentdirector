@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 07, 2019 at 09:37 PM
+-- Generation Time: Aug 24, 2019 at 01:29 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.7
 
@@ -45,7 +45,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `usertype`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Chris Jim Egot', 'jimegot@yahoo.com.ph', '2019-04-08 16:00:00', 'Administrator', '$2y$10$csTMdGnSkNrwJsW/wgIuXOD9d0fTKzjVE.I9K91X5nHGdLnR4YZ3e', NULL, '2019-04-08 16:00:00', '2019-04-08 16:00:00');
+(1, 'Chris Jim Egot', 'jimegot@yahoo.com.ph', '2019-04-08 16:00:00', 'Administrator', '$2y$10$/2EBMqbmnWE51OZETZ8KTuMNuuWMCtWX6yiAiGZzR4mQtXCK9M.Iy', NULL, '2019-04-08 16:00:00', '2019-04-08 16:00:00');
 
 -- --------------------------------------------------------
 
@@ -131,11 +131,11 @@ CREATE TABLE `echips` (
 --
 
 INSERT INTO `echips` (`id`, `value`, `images`) VALUES
-(114, 10, '10.png'),
-(115, 25, 't5.png'),
-(116, 100, '100.png'),
-(117, 1000, '1000.png'),
-(119, 10000, '10000.png');
+(121, 10, '10.png'),
+(122, 25, 't5.png'),
+(123, 100, '100.png'),
+(124, 1000, '1000.png'),
+(125, 10000, '10000.png');
 
 -- --------------------------------------------------------
 
@@ -195,9 +195,9 @@ CREATE TABLE `everydaytournament` (
 --
 
 INSERT INTO `everydaytournament` (`id`, `level`, `blinds`, `in_minutes`, `in_seconds`) VALUES
-(101, 'Level 1', '50/100', 1, 60),
-(102, 'Level 2', '100/200', 1, 60),
-(103, 'Level 3', '200/400', 1, 60),
+(101, 'Level 1', '50/100', 10, 600),
+(102, 'Level 2', '100/200', 10, 600),
+(103, 'Level 3', '200/400', 10, 600),
 (104, 'Break Time - 10 mins', 'Chip Raise 25', 10, 600),
 (105, 'Level 4', '300/600', 10, 600),
 (106, 'Level 5', '400/800', 10, 600),
@@ -206,8 +206,8 @@ INSERT INTO `everydaytournament` (`id`, `level`, `blinds`, `in_minutes`, `in_sec
 (109, 'Break Time - 5 mins', '-', 5, 300),
 (110, 'Level 8', '700 Ante 100/1,400', 10, 600),
 (111, 'Level 9', '800/1,600', 10, 600),
-(112, 'Level 10', '900/1,800', 1, 60),
-(113, 'Level 11', '1,000/2,000', 1, 60),
+(112, 'Level 10', '900/1,800', 10, 600),
+(113, 'Level 11', '1,000/2,000', 10, 600),
 (114, 'END OF TOURNAMENT', '-', 0, 0);
 
 -- --------------------------------------------------------
@@ -287,13 +287,41 @@ CREATE TABLE `tournament` (
 --
 
 INSERT INTO `tournament` (`id`, `level`, `blinds`, `in_minutes`, `in_seconds`) VALUES
-(101, 'Level 1', '25/50', 20, 1200),
-(102, 'Level 2', '50/100', 20, 1200),
-(103, 'Level 3', '100/200', 20, 1200),
-(104, 'Level 4', '200/400', 20, 1200),
-(105, 'Level 5', '300/600', 20, 1200),
-(106, 'Level 6', '400/800', 20, 1200),
-(107, 'Level 7', '200/500', 20, 1200);
+(1, 'Level 1', '25/50', 20, 1200),
+(2, 'Level 2', '50/100', 20, 1200),
+(3, 'Level 3', '100/200', 20, 1200),
+(4, 'Level 4', '200/400', 20, 1200),
+(5, 'Level 5', '300/600', 20, 1200),
+(6, 'Level 6', '400/800', 20, 1200),
+(7, 'Break Time - 30 Mins', 'Dinner', 30, 1800),
+(8, 'Level 7', '500/1,000 Ante 50', 20, 1200),
+(9, 'Level 8', '600/1,200 Ante 50', 20, 1200),
+(10, 'Level 9', '700/1,400 Ante 100', 20, 1200),
+(11, 'Level 10', '800/1,600 Ante 100', 20, 1200),
+(12, 'Level 11', '900/1,800 Ante 200', 20, 1200),
+(13, 'Level 12', '1,000/2,000 Ante 200', 20, 1200),
+(14, 'Break Time - 10 Mins', 'Chip-Up', 10, 600),
+(15, 'Level 13', '1,200/2,400 Ante 300', 20, 1200),
+(16, 'Level 14', '1,300/2,600 Ante 300', 20, 1200),
+(17, 'Level 15', '1,400/2,800 Ante 400', 20, 1200),
+(18, 'Level 16', '1,500/3,000 Ante 400', 20, 1200),
+(19, 'Level 17', '1,600/3,200 Ante 400', 20, 1200),
+(20, 'Level 18', '1,800/3,600 Ante 500', 20, 1200),
+(21, 'Break Time - 10 Mins', '-', 10, 600),
+(22, 'Level 19', '2,000/4,000 Ante 500', 20, 1200),
+(23, 'Level 20', '2,200/4,400 Ante 500', 20, 1200),
+(24, 'Level 21', '2,500/5,000 Ante 1,000', 20, 1200),
+(25, 'Level 22', '3,000/6,000 Ante 1,000', 20, 1200),
+(26, 'Level 23', '3,500/7,000 Ante 2,000', 20, 1200),
+(27, 'Level 24', '4,000/8,000 Ante 2,000', 20, 1200),
+(28, 'Break Time - 5 Mins', '-', 5, 300),
+(29, 'Level 25', '4,500/9,000 Ante 3,000', 20, 1200),
+(30, 'Level 26', '5,000/10,000 Ante 4,000', 20, 1200),
+(31, 'Level 27', '6,000/12,000 Ante 5,000', 20, 1200),
+(32, 'Level 28', '8,000/16,000 Ante 5,000', 20, 1200),
+(33, 'Level 29', '10,000/20,000 Ante 10,000', 20, 1200),
+(34, 'Level 30', '20,000/40,000 Ante 10,000', 20, 1200),
+(35, 'END OF TOURNAMENT', '-', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -318,7 +346,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `usertype`) VALUES
-(2, 'Chris Jim Egot', 'sabosidochrisjim@yahoo.com', NULL, '$2y$10$csTMdGnSkNrwJsW/wgIuXOD9d0fTKzjVE.I9K91X5nHGdLnR4YZ3e', 'p71FgbOygfrOcfmtnzPiDb7yRT0PIeSekwkvoJG9NmcpVLzZNsunllzigaC6', '2019-04-08 08:05:47', '2019-04-08 08:05:47', NULL);
+(3, 'Admin', 'admin@yahoo.com', NULL, '$2y$10$xXpUtLD5mw6dBldIdchMU.pTE/ewDQKi8t1quqOLdG5vSsB/e.YHC', NULL, '2019-08-24 05:27:07', '2019-08-24 05:27:07', NULL);
 
 --
 -- Indexes for dumped tables
@@ -436,7 +464,7 @@ ALTER TABLE `ebuyin`
 -- AUTO_INCREMENT for table `echips`
 --
 ALTER TABLE `echips`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `eprizemoney`
@@ -466,19 +494,19 @@ ALTER TABLE `prize`
 -- AUTO_INCREMENT for table `prizemoney`
 --
 ALTER TABLE `prizemoney`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `tournament`
 --
 ALTER TABLE `tournament`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

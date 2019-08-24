@@ -2,16 +2,16 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
-            Chips Controller
+            <b style="color:white;">Chips Controller</b>
             <small>Daily Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li class="active">Chips Controller</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -90,11 +90,7 @@ function current_page($uri = "/") {
                   </div>
 
                 </form>
-          </div><!--/tab-pane-->
-        </div><!--/col-12-->
-    </div><!--/row-->
-                                                      
-@endsection
+ 
 
 <style>
 
@@ -107,6 +103,9 @@ function current_page($uri = "/") {
 }
 </style>
 
+                                                     
+@endsection
+ 
 
 
 

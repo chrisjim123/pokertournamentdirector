@@ -2,7 +2,7 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
             Edit Level
             <small>Daily Tournament</small>
@@ -12,7 +12,7 @@
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="{{ url('/elevelview') }}">Level Controller</a></li>
             <li class="active">Edit Level</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -42,7 +42,7 @@ function current_page($uri = "/") {
                 <li {{ (current_page("eplayersview")) ? 'class=active' : '' }}><a href="{{ url('/eplayersview') }}">Players</a></li> 
                 <li {{ (current_page("ebuyinview")) ? 'class=active' : '' }}><a href="{{ url('/ebuyinview') }}">Buyin</a></li>
                 <li {{ (current_page("echipsview")) ? 'class=active' : '' }}><a href="{{ url('/echipsview') }}">Chips</a></li>
-                <li {{ (current_page("updatelevel")) ? 'class=active' : '' }}><a href="#">Level</a></li>
+                <li {{ (current_page("updatelevel")) ? 'class=active' : '' }}><a href="{{ url('/elevelview') }}">Level</a></li>
                 <li {{ (current_page("epotmoneyview")) ? 'class=active' : '' }}><a href="{{ url('/epotmoneyview') }}">Pot Money</a></li>
                 <li {{ (current_page("prizemoneyview")) ? 'class=active' : '' }}><a href="{{ url('/prizemoneyview') }}">Percent Prize</a></li>
    
@@ -89,8 +89,6 @@ function current_page($uri = "/") {
           </div><!--/tab-pane-->
         </div><!--/col-12-->
     </div><!--/row-->
-                                                      
-@endsection
 
 <style>
 
@@ -103,8 +101,10 @@ function current_page($uri = "/") {
 }
 </style>
 
+                                                      
+@endsection
 
-
+ 
 
 
 

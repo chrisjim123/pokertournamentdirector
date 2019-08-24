@@ -2,16 +2,16 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
-            Pot Money Controller
+            <b style="color:white;">Pot Money Controller</b>
             <small>Daily Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li class="active">Pot Money Controller</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -48,13 +48,13 @@ function current_page($uri = "/") {
   
               </ul>
 
-                <hr>
+    
                   <form class="form" action="{{ url('/updatepotmoney')}}/101" method="post" id="registrationForm" enctype="multipart/form-data">
                            {{ csrf_field() }}
 
                       <div class="form-group">
                           <div class="col-xs-3">
-                              <label for="potmoney"><h4>Pot Money</h4></label>
+                              <label for="potmoney"><h4 style="color:white;">Pot Money</h4></label>
                               <input style="border:none; background:white;" value="{{ $epotprize->totalprize }}" type="number" class="form-control" name="potmoney"  placeholder="Enter Pot Money" required="">
                           </div>
                       </div>
@@ -71,8 +71,6 @@ function current_page($uri = "/") {
           </div><!--/tab-pane-->
         </div><!--/col-12-->
     </div><!--/row-->
-                                                      
-@endsection
 
 <style>
 
@@ -85,8 +83,7 @@ function current_page($uri = "/") {
 }
 </style>
 
-
-
-
-
+                                                      
+@endsection
+ 
 

@@ -2,16 +2,16 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
-            Level Controller
+            <b style="color:white;">Level Controller</b>
             <small>Daily Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li class="active">Level Controller</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -93,14 +93,7 @@ function current_page($uri = "/") {
 
                 </form>
        
-              </div><!--/tab-pane-->
-            </div><!--/col-12-->
-        </div><!--/row-->
-                  
-
-@endsection
-
-
+    
 <style>
 
 #uprall {
@@ -113,7 +106,8 @@ function current_page($uri = "/") {
 </style>
 
 
-
+@endsection
+ 
 
 
 

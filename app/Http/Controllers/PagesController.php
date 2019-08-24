@@ -90,12 +90,16 @@ class PagesController extends Controller
   {
     if(isset($_POST['update']))
     {
+    $eprize = EverydayPrize::firstOrFail();
+    $tprize = $eprize->totalprize;
+
     $ebuyin = EBuyin::firstOrFail();
     $defbuyin = $ebuyin->ebuyinamount;
     $buyin = (int)$defbuyin;
+
     $totalplayers = (int)$request->input('player');
 
-    if($buyin != "")
+    if($buyin != 0 AND $tprize != 0)
     {
     if($totalplayers != 0)
     {
@@ -328,35 +332,50 @@ public function updatechipsview(Request $request, $id){
   public function addplayer(Request $request)
   {
     $id = 101;
+    $eprize = EverydayPrize::firstOrFail();
+    $tprize = $eprize->totalprize;
+
     $ebuyin = EBuyin::firstOrFail();
     $defbuyin = $ebuyin->ebuyinamount;
-
     $buyin = (int)$defbuyin;
-
-    $ebuyin = EBuyin::firstOrFail();
+    $erebuy = $ebuyin->etotalbuyer;
     $eplayers = $ebuyin->etotalplayers;
+    $etchips = $ebuyin->etotalchips;
+
     $tplayers = (int)$request->input('totalplayers');
-    $totalplayers = ($eplayers+$tplayers);
+    $newtotalplayers = ($eplayers+$tplayers);
 
-    $totalchips = ($buyin*$totalplayers);
-    $averagechips = ($totalchips/$totalplayers);
+    $totalchips = ($buyin*$tplayers);
+    $gtchips = ($etchips+$totalchips);
+    $averagechips = ($gtchips/$newtotalplayers);
 
-    DB::update('update ebuyin set etotalplayers = ?, ebuyinamount = ?, etotalchips = ?, eaveragechips = ? where id = ?' ,[$totalplayers,$buyin,$totalchips,$averagechips,$id]);
+    if($defbuyin != 0 AND $tprize !=0){
+    DB::update('update ebuyin set etotalplayers = ?, ebuyinamount = ?, etotalchips = ?, eaveragechips = ? where id = ?' ,[$newtotalplayers,$buyin,$gtchips,$averagechips,$id]);
 
     $result = [
-      'total' => number_format($totalplayers),
+      'total' => number_format($newtotalplayers),
       'ave' => number_format($averagechips),
-      'tchips' => number_format($totalchips)
+      'tchips' => number_format($gtchips)
     ];
     echo json_encode($result);
 
     exit;
+
+  }else{
+        session()->flash('status', 'Please set Buyin Amount and Pot Money.');
+        return redirect()->back();
+
+  }
   }
 
   public function minusplayer(Request $request)
   {
     $id = 101;
+    $eprize = EverydayPrize::firstOrFail();
+    $tprize = $eprize->totalprize;
+
     $ebuyin = EBuyin::firstOrFail();
+    $defbuyin = $ebuyin->ebuyinamount;
     $player = $ebuyin->etotalplayers;
     $totalchips = $ebuyin->etotalchips;
 
@@ -365,6 +384,7 @@ public function updatechipsview(Request $request, $id){
 
     $averagechips = ($totalchips/$newtotalplayer);
 
+    if($defbuyin != 0 AND $tprize !=0){
     DB::update('update ebuyin set etotalplayers = ?, eaveragechips = ? where id = ?' ,[$newtotalplayer,$averagechips,$id]);
 
     $result = [
@@ -375,6 +395,11 @@ public function updatechipsview(Request $request, $id){
 
     echo json_encode($result);
     exit;
+    }else{
+        session()->flash('status', 'Please set Buyin Amount and Pot Money.');
+        return redirect()->back();
+
+  }
   }
 
   public function rebuy(Request $request)

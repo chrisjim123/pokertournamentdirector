@@ -2,16 +2,16 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header"  >
           <h1>
-            Players Controller
+            <b style="color:white;">Players Controller</b>
             <small>Saturday Tournament</small>
           </h1>
 
        <ol class="breadcrumb">
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li class="active">Players Controller</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -55,14 +55,14 @@ function current_page($uri = "/") {
    
               </ul>
 
-                <hr>
+ 
                   <form class="form" action="{{ url('/supdateplayer')}}/101" method="post" id="registrationForm" enctype="multipart/form-data">
                            {{ csrf_field() }}
 
                       <div class="form-group">
 
                           <div class="col-xs-12">
-                              <label for="player"><h4>Total Players</h4></label>
+                              <label for="player"><h4 style="color:white;">Total Players</h4></label>
                               <input style="width:325px; border:none; background:white;" value="{{ $sbuyin->totalplayers }}" type="number" class="form-control" name="player"  placeholder="Enter Total Players" required=""><strong style="color:red;">Note: Please set Buyin Amount and Pot Money before adding a player.</strong>
                           </div>
                       </div>
@@ -80,8 +80,6 @@ function current_page($uri = "/") {
         </div><!--/col-12-->
     </div><!--/row-->
                                                       
-@endsection
-
 <style>
 
 #uprall {
@@ -93,7 +91,8 @@ function current_page($uri = "/") {
 }
 </style>
 
-
+                                                      
+@endsection
 
 
 

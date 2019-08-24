@@ -27,35 +27,49 @@ class SaturdayTournamentController extends Controller
   {
     /*SATURDAY TOURNAMENT FUNCTIONS*/
     $id = 101;
+    $eprize = Prize::firstOrFail();
+    $tprize = $eprize->totalprize;
+
     $ebuyin = Buyin::firstOrFail();
     $defbuyin = $ebuyin->buyinamount;
-
     $buyin = (int)$defbuyin;
-
-    $ebuyin = Buyin::firstOrFail();
+    $erebuy = $ebuyin->totalbuyer;
     $eplayers = $ebuyin->totalplayers;
+    $etchips = $ebuyin->totalchips;
+
     $tplayers = (int)$request->input('totalplayers');
-    $totalplayers = ($eplayers+$tplayers);
+    $newtotalplayers = ($eplayers+$tplayers);
 
-    $totalchips = ($buyin*$totalplayers);
-    $averagechips = ($totalchips/$totalplayers);
+    $totalchips = ($buyin*$tplayers);
+    $gtchips = ($etchips+$totalchips);
+    $averagechips = ($gtchips/$newtotalplayers);
 
-    DB::update('update buyin set totalplayers = ?, buyinamount = ?, totalchips = ?, averagechips = ? where id = ?' ,[$totalplayers,$buyin,$totalchips,$averagechips,$id]);
+    if($defbuyin != 0 AND $tprize !=0){
+    DB::update('update buyin set totalplayers = ?, buyinamount = ?, totalchips = ?, averagechips = ? where id = ?' ,[$newtotalplayers,$buyin,$gtchips,$averagechips,$id]);
 
     $result = [
-      'total' => number_format($totalplayers),
+      'total' => number_format($newtotalplayers),
       'ave' => number_format($averagechips),
-      'tchips' => number_format($totalchips)
+      'tchips' => number_format($gtchips)
     ];
     echo json_encode($result);
 
     exit;
+    }else{
+        session()->flash('status', 'Please set Buyin Amount and Pot Money.');
+        return redirect()->back();
+
+  }
   }
 
   public function sminusplayer(Request $request)
   {
     $id = 101;
+    $eprize = Prize::firstOrFail();
+    $tprize = $eprize->totalprize;
+
     $ebuyin = Buyin::firstOrFail();
+    $defbuyin = $ebuyin->buyinamount;
     $player = $ebuyin->totalplayers;
     $totalchips = $ebuyin->totalchips;
 
@@ -64,6 +78,7 @@ class SaturdayTournamentController extends Controller
 
     $averagechips = ($totalchips/$newtotalplayer);
 
+    if($defbuyin != 0 AND $tprize !=0){
     DB::update('update buyin set totalplayers = ?, averagechips = ? where id = ?' ,[$newtotalplayer,$averagechips,$id]);
 
     $result = [
@@ -74,6 +89,11 @@ class SaturdayTournamentController extends Controller
 
     echo json_encode($result);
     exit;
+    }else{
+        session()->flash('status', 'Please set Buyin Amount and Pot Money.');
+        return redirect()->back();
+
+  }
   }
 
   public function srebuy(Request $request)
@@ -262,12 +282,15 @@ public function supdatechipsview(Request $request, $id){
   {
     if(isset($_POST['update']))
     {
+    $prize = Prize::firstOrFail();
+    $tprize = $prize->totalprize;
+
     $sbuyin = Buyin::firstOrFail();
     $defbuyin = $sbuyin->buyinamount;
     $buyin = (int)$defbuyin;
     $totalplayers = (int)$request->input('player');
 
-    if($buyin != "")
+    if($buyin != 0 AND $tprize != 0)
     {
     if($totalplayers != 0)
     {

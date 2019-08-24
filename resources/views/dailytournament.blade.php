@@ -23,6 +23,7 @@
     <div class="form-group">
     <label for="totalplayers">Total Players</label>
     <input autofocus type="number" class="form-control" id="totalplayers" name="totalplayers" aria-describedby="emailHelp" placeholder="Enter Total Players" required>
+    <strong style="color:red;">Note: Please set <a href="{{url('ebuyinview')}}">Buyin Amount</a> and <a href="{{url('epotmoneyview')}}">Pot Money</a> before adding a player.</strong>
   </div>
       
       <div class="modal-footer">
@@ -103,79 +104,91 @@
 
     <div class="row" >
         <div class="col-sm-3"><!--left col-->
+        <form style="box-shadow:0px 2px 2px 2px black;  outline:none; border-radius:10px 10px; background:white; border:solid transparent; font-family:Baskerville Old;">
         <ul class="list-group">
-           <li class="list-group-item" style="font-size: 30px; background: black; color: white;"><b>TURBO TOURNAMENT</b><span class="pull-right"><a href="{{ url('/resetalletournament') }}"><button id="resetall" type="button"  class="btn btn-sm btn-success"><i class="glyphicon glyphicon-refresh" title="Reset All"></i></button></a></span></li>
+           <li class="list-group-item" style="font-size: 30px; color: white; box-shadow:0px 2px 2px 2px gray;  outline:none; border-radius:10px 10px; background:#0a0; border:solid transparent; font-family:Baskerville Old;"><span class="pull-right"><a href="{{ url('/resetalletournament') }}"><button title="Reset All" style="box-shadow:0px 1px 2px 2px #0a0;  outline:none; border-radius:10px 10px; background:white; border:solid transparent;" id="resetall" type="button"  class="btn btn-sm btn-success"><i style="color:red;" class="glyphicon glyphicon-refresh"></i></button></a></span><b>TURBO TOURNAMENT</b></li>
  
-            <li class="list-group-item text-right" ><span class="pull-left" style="font-size: 25px;"><strong id="tplayer">Players</strong></span><b><input id="inputplayer" value="{{ $ebuyin->etotalplayers }}" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b></b>&nbsp;&nbsp;&nbsp;
- 
-                 <button  data-toggle="modal" data-target="#minusplayermodal" type="button"  class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-minus"></i></button>
-                 <button data-toggle="modal" data-target="#addplayermodal" type="button" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
+            <li class="list-group-item text-right" ><span class="pull-left" style="font-size: 25px;"><strong id="tplayer">Players</strong></span>
+              <button style="box-shadow:0px 1px 2px 2px white;  outline:none; border-radius:10px 10px; background:transparent; border:solid transparent;"  data-toggle="modal" data-target="#minusplayermodal" type="button"  class="btn btn-md btn-danger"><i style="color:red;" class="glyphicon glyphicon-minus"></i></button>&nbsp;
+              <button style="box-shadow:0px 1px 2px 2px white;  outline:none; border-radius:10px 10px; background:transparent; border:solid transparent;" data-toggle="modal" data-target="#addplayermodal" type="button" type="button" class="btn btn-md btn-primary"><i style="color:#0a0;" class="glyphicon glyphicon-plus"></i></button>&nbsp;
+              <b><input disabled="" id="inputplayer" value="{{ $ebuyin->etotalplayers }}" style="text-align: right; height: 40px; width:150px; font-size: 35px; background: black; border: none; color: white; border-radius:5px 5px; box-shadow:0px 1px 2px 2px white; outline: none;"></b>
+                
                 </li>
 
-            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Rebuys</strong></span><b><input id="inputRebuy" value="{{ $ebuyin->etotalbuyer }}" style="text-align: right; border:0px; width:150px; font-size: 25px;"></b>&nbsp;&nbsp;&nbsp;<button  data-toggle="modal" data-target="#updaterebuymodal" type="button"  class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-plus"></i></button></li>
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Rebuys</strong></span>
+            <button style="box-shadow:0px 1px 2px 2px white;  outline:none; border-radius:10px 10px; background:transparent; border:solid transparent;" data-toggle="modal" data-target="#updaterebuymodal" type="button"  class="btn btn-md btn-primary"><i style="color:#0a0;" class="glyphicon glyphicon-plus"></i></button>&nbsp;
+            <b><input disabled="" id="inputRebuy" value="{{ $ebuyin->etotalbuyer }}" style="text-align: right; height: 40px; width:150px; font-size: 35px; background: black; border: none; color: white; border-radius:5px 5px; box-shadow:0px 1px 2px 2px white; outline: none;"></b></li>
     
-              <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Ave. Chips</strong></span><b><input id="avechips" value="{{ number_format($ebuyin->eaveragechips) }}" style="text-align: right; border:0px; width:200px; font-size: 25px;"></b> </li>
+              <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Ave. Chips</strong></span><b><input disabled="" id="avechips" value="{{ number_format($ebuyin->eaveragechips) }}" style="text-align: right; height: 40px; width:250px; font-size: 35px; background: black; border: none; color: white; border-radius:5px 5px; box-shadow:0px 1px 2px 2px white; outline: none;"></b> </li>
           
-             <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Total Chips</strong></span><b><input id="totalchips" type="text" value="{{ number_format($ebuyin->etotalchips) }}" id="tchips" name="tchips" style="text-align: right; border:0px; width:200px; font-size: 25px;"></b> </li>
-          </ul> 
+             <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>Total Chips</strong></span><b><input disabled="" id="totalchips" type="text" value="{{ number_format($ebuyin->etotalchips) }}" id="tchips" name="tchips" style="text-align: right; height: 40px; width:250px; font-size: 35px; background: black; border: none; color: white; border-radius:5px 5px; box-shadow:0px 1px 2px 2px white; outline: none;"></b> </li>
+          </ul> </form><br>
 
+            <form style="box-shadow:0px 2px 2px 2px black;  outline:none; border-radius:10px 10px; background:white; border:solid transparent; font-family:Baskerville Old;">
             <ul class="list-group"><!-- Chips Section -->
-            <li class="list-group-item" style="font-size: 30px; background: black; color: white;"><b>CHIPS</b><span class="pull-right"><b>VALUE</b></span></li>
+            <li class="list-group-item" style="font-size: 30px; background: #0a0; color: white; box-shadow:0px 2px 2px 2px gray;  outline:none; border-radius:10px 10px; background:#0a0; border:solid transparent; font-family:Baskerville Old;"><b>CHIPS VALUE</b> </li><br>
+            <div class="row"><!-- Players Row -->
             @foreach($echips as $chips)
-            <li data-toggle="modal" data-target="#v1" type="button" class="list-group-item text-right"><span class="pull-left" ><img title="Click to Preview" src="{{asset('uploads')}}/{{$chips->images}}" style="height: 70px; width: 70px;" class="avatar img-circle img-thumbnail" alt="avatar"></span><b style="font-size: 45px; color:black;">{{number_format($chips->value)}}</b></li>
-              @endforeach
-              </ul> <!-- End Chips Section -->
+            <div class="col-md-6">
+            <li style="background: transparent; border: none;" data-toggle="modal" data-target="#v1" type="button" class="list-group-item text-right"><span class="pull-center" ><center><img title="Click to Preview" src="{{asset('uploads')}}/{{$chips->images}}" style="height: 125px; width: 125px; box-shadow:0px 3px 3px 3px gray;  outline:none;" class="avatar img-circle img-thumbnail" alt="avatar"><br><b style="font-size: 35px;  color:black;">{{number_format($chips->value)}}</b></center></span></li>
+            </div>
+            @endforeach
+            </div>
+            </ul> <!-- End Chips Section -->
+            </form>
+
         </div><!--/col-3-->
 
 
-        <div class="col-sm-5"><!-- col 5 -->
-          <form style="border: 4px solid #a1a1a1;margin-top: 0px;padding: 20px;">
+        <div class="col-sm-6"><!-- col 5 -->
+          <form style="border: 4px solid #a1a1a1;margin-top: 0px;padding: 20px; box-shadow:0px 2px 5px 5px #0a0;  outline:none; border-radius:20px 20px; background:none; border:solid transparent;">
               <center>
-                <h1 id="round" style="margin-bottom: -50px; font-size: 60px; color: white;">{{ $timertournament[0]->level }}</h1>
-                <div id="clocker" class="clock" style="font-size: 200px; color:#0a0; font-family:'digital-clock-font'">{{ gmdate("i:s", $timertournament[0]->in_seconds ) }}</div>
+                <h1 id="round" style="margin-bottom: -50px; font-size: 90px; color: white; font-family:Baskerville Old;">{{ $timertournament[0]->level }}
+                </h1>
+                <div id="clocker" class="clock" style="font-size: 310px; color:#0a0; font-family:'digital-clock-font'">{{ gmdate("i:s", $timertournament[0]->in_seconds) }}</div>
                 
-                <div id="poker_blinds" style="margin-top: -65px; margin-bottom: 20px; font-size: 60px; color:white;">{{ $timertournament[0]->blinds }}
+                <div id="poker_blinds" style="margin-top: -65px; margin-bottom: 20px; font-size: 70px; color:white; font-family:Baskerville Old;">{{ $timertournament[0]->blinds }}
                 </div><br>
-
-                <button type="button" class="btn btn-md btn-primary" id="poker_play_pause">
-                  <i class="glyphicon glyphicon-pause"></i> /
-                  <i class="glyphicon glyphicon-play"></i> 
-                  <span id="play_pause_div">Play</span>
+                
+                <button style="color:#0a0; box-shadow:0px 1px 2px 2px black; outline:none; border-radius:20px 20px; background:transparent; border:solid transparent;" type="button" class="btn btn-md btn-primary" id="poker_play_pause">
+                  <i id="poker_play" class="glyphicon glyphicon-play"></i> 
+                  <span id="play_pause_div">START</span>
                 </button>
                 <span style="margin-left: 50px;"></span>
-                <button type="button" class="btn btn-md btn-success" id="poker_next_round"><i class="glyphicon glyphicon-arrow-right"></i> Next</button>
+                <button style="color: skyblue; box-shadow:0px 1px 2px 2px black;  outline:none; border-radius:20px 20px; background:transparent; border:solid transparent;" type="button" class="btn btn-md btn-success" id="poker_next_round"><i class="glyphicon glyphicon-arrow-right"></i> NEXT</button>
                 <span style="margin-left: 50px;"></span>
-                <button type="button" class="btn btn-md btn-warning reset" onclick='refreshPage()'><i class="glyphicon glyphicon-refresh"></i> Reset</button>
+                <button style="color:orange; box-shadow:0px 1px 2px 2px black;  outline:none; border-radius:20px 20px; background:transparent; border:solid transparent;" type="button" class="btn btn-md btn-warning reset" onclick='refreshPage()'><i class="glyphicon glyphicon-refresh"></i> RESET</button>
               </center> </form><br>
               
                 <ul id="pagination" class="list-group posts endless-pagination"><!-- LEVEL SECTION -->
-                <li class="list-group-item text-muted" style="font-size: 30px; background: black; color: white;"><b>LEVELS - BLINDS</b><span class="pull-right"><b>TIME - (MIN:SEC)</b></span></li>
+                <li class="list-group-item text-muted" style="font-size: 30px; background: #0a0; color: white; box-shadow:0px 2px 2px 2px black;  outline:none; border-radius:10px 10px; background:#0a0; border:solid transparent; font-family:Baskerville Old;"><b>LEVELS - BLINDS</b><span class="pull-right"><b>DURATION</b></span></li>
             
-                  <li class="list-group-item text-center" style="font-size: 30px; color:#0a0; font-family:'digital-clock-font"><b>CURRENT LEVEL</b></li>
+                  <li class="list-group-item text-center" style="border:none; background: transparent; font-size: 35px; color:#0a0; font-family:'digital-clock-font"><b>CURRENT LEVEL</b></li>
                   <li class="list-group-item text-right">
                     <span class="pull-left">
                       <span class="pull-left">
-                        <strong id="currentlevel1" style="font-size: 30px;">{{ $timertournament[0]->level }} - {{ $timertournament[0]->blinds }}</strong>
+                        <strong id="currentlevel1" style="font-size: 30px; ">{{ $timertournament[0]->level }} - {{ $timertournament[0]->blinds }}</strong>
                       </span>
-                    </span><strong id="currentlevel2" style="font-size: 30px;">{{ gmdate("i:s", $timertournament[0]->in_seconds ) }}</strong>
+                    </span><strong id="currentlevel2" style="font-size: 30px;">{{ gmdate("i:s", $timertournament[0]->in_seconds ) }} mins.</strong>   
                   </li>
 
-                   <li class="list-group-item text-center" style="font-size: 30px; color:#0a0; font-family:'digital-clock-font"><b>NEXT LEVEL</b></li>
+
+                   <li class="list-group-item text-center" style="border:none; background: transparent; font-size: 35px; color:#0a0; font-family:'digital-clock-font"><b>NEXT LEVEL</b></li>
                   <li class="list-group-item text-right">
                     <span class="pull-left">
                       <span class="pull-left">
                         <strong id="nextlevel1" style="font-size: 30px;">{{ $timertournament[1]->level }} - {{ $timertournament[1]->blinds }}</strong>
                       </span>
-                    </span><strong id="nextlevel2" style="font-size: 30px;">{{ gmdate("i:s", $timertournament[1]->in_seconds ) }}</strong>
+                    </span><strong id="nextlevel2" style="font-size: 30px;">{{ gmdate("i:s", $timertournament[1]->in_seconds ) }} mins.</strong>
                   </li>
                   </ul><!-- END LEVEL SECTION -->
             </div><!--/col-5-->
 
 
-        <div class="col-sm-4"><!-- col 4 -->
+        <div class="col-sm-3"><!-- col 4 -->
+          <form style="box-shadow:0px 2px 2px 2px black;  outline:none; border-radius:10px 10px; background:white; border:solid transparent; font-family:Baskerville Old;">
             <ul class="list-group">
-              <?php $tp = number_format($eprize->totalprize); ?>
-            <li class="list-group-item" style="background: black;"><b style="font-size: 30px; color: white;">PRIZE MONEY</b><b><input id="potmoney" class="pull-right" style="text-align: right; height: 40px; width: 250px; font-size: 35px; background: black; border: none; color: red;" disabled="" value="Php {{ number_format($eprize->totalprize) }}"></b>
+            <li class="list-group-item" style="background: #0a0; box-shadow:0px 2px 2px 2px gray;  outline:none; border-radius:10px 10px; background:#0a0; border:solid transparent;"><b style="font-size: 30px; color: white; font-family:Baskerville Old;"><span class="pull-right"><b><input id="potmoney" style="text-align: right; height: 40px; width: 310px; font-size: 35px; background: black; border: none; color: red; border-radius:10px 10px; box-shadow:0px 1px 2px 2px white;" disabled="" value="Php {{ number_format($eprize->totalprize) }}"></b></span><b>PRIZE</b></li>
 
             <?php 
             $tchips1 = $eprize->totalprize;
@@ -194,12 +207,12 @@
             $result3 = number_format($total3);
            ?>
 
-            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$eprizemoney[0]->place}}</strong></span><b><input id="prize1" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result1 }}"></b></li>
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 35px;"><strong style="color:black;">{{$eprizemoney[0]->place}}</strong></span><b><input disabled="" id="prize1" style="background: white; border:none; text-align: right; font-size: 40px; color:black; outline: none; width: 310px;" value="Php {{ $result1 }}"></b></li>
             
-            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$eprizemoney[1]->place}}</strong></span><b><input id="prize2" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result2 }}"></b></li>
+            <li class="list-group-item text-right"><span class="pull-left" style="font-size: 35px;"><strong style="color:black;">{{$eprizemoney[1]->place}}</strong></span><b><input disabled="" id="prize2" style="background: white; border:none; text-align: right; font-size: 40px; color:black; outline: none; width: 310px;" value="Php {{ $result2 }}"></b></li>
 
-             <li class="list-group-item text-right"><span class="pull-left" style="font-size: 25px;"><strong>{{$eprizemoney[2]->place}}</strong></span><b><input id="prize3" style="border:none; text-align: right; font-size: 30px; color:black;" value="Php {{ $result3 }}"></b></li>
-            </ul> 
+             <li class="list-group-item text-right"><span class="pull-left" style="font-size: 35px;"><strong style="color:black;">{{$eprizemoney[2]->place}}</strong></span><b><input disabled="" id="prize3" style="background: white; border:none; text-align: right; font-size: 40px; color:black; outline: none; width: 310px;" value="Php {{ $result3 }}"></b></li>
+            </ul></form>
         </div><!--/col-4-->
 
         </div> 
@@ -207,7 +220,8 @@
       </div><!--/tab-content-->
     </div><!--/row-->
                                                       
-    <audio id="soundHandle" style="display: none;"></audio>
+    <audio id="soundHandle1" style="display: none;"></audio>
+    <audio id="soundHandle2" style="display: none;"></audio>
 
 @push('custom-scripts')
 <script type="text/javascript">
@@ -215,6 +229,7 @@
     var round = 0;
     var timerindex = 0;
     var duration = '{{ $timertournament[0]->in_seconds }}';
+    var endtournament;
     var timer = duration;
     var interval_id;
     
@@ -223,8 +238,12 @@
         return !interval_id ? true : false;
       },
       playAlarm: function () {
-        soundHandle.src = '{{asset('sound/alertnext1.mp3')}}';
-        soundHandle.play();
+        soundHandle1.src = '{{asset('sound/alertnext1.mp3')}}';
+        soundHandle1.play();
+      },
+      playAlarmendtournament: function () {
+        soundHandle2.src = '{{asset('sound/alert.mp3')}}';
+        soundHandle2.play();
       },
       reset: function () {
         // reset timer
@@ -310,12 +329,12 @@
             this.updateClock(timer);
             break;
           case 13:
-            timer =  '{{ $timertournament[13]->in_seconds }}';
-            this.updateClock(timer);
+            endtournament = '{{$timertournament[13]->in_seconds}}';
+            this.updateClock(endtournament);
             break;
           default:
-            timer = 0; 
-            this.updateClock(timer);
+            endtournament = 0; 
+            this.updateClock(endtournament);
             break;
         }
         // reset play/pause button
@@ -341,7 +360,7 @@
             $('#poker_blinds').html('{{ $timertournament[2]->blinds }}');
             break;
           case 3:
-            $('#poker_blinds').html('<b style="color:red;">'+'{{ $timertournament[3]->blinds }}'+'</b>');
+            $('#poker_blinds').html('<b style="color:red;">'+'{{ $timertournament[3]->blinds }}'+'</b>'); //first break
             break;
           case 4:
             $('#poker_blinds').html('{{ $timertournament[4]->blinds }}');
@@ -356,8 +375,8 @@
             $('#poker_blinds').html('{{ $timertournament[7]->blinds }}');
             break;
           case 8:
-            $('#poker_blinds').html('<b style="color:red;">'+'{{ $timertournament[8]->blinds }}'+'</b>');
-            break;
+            $('#poker_blinds').html('<b style="color:red;">'+'{{ $timertournament[8]->blinds }}'+'</b>'); //second break
+            break; 
           case 9:
             $('#poker_blinds').html('{{ $timertournament[9]->blinds }}');
             break;
@@ -371,13 +390,20 @@
             $('#poker_blinds').html('{{ $timertournament[12]->blinds }}');
             break;
           case 13:
-            $('#poker_blinds').html('');
+            $('#poker_blinds').html('{{ $timertournament[13]->blinds }}');
             break;
-    
         }
 
       },
       updateClock: function (timer) {
+
+        if(endtournament == 0){ //end of tournament
+          $('#round').html('<b class="blink" style="color:red; font-size: 60px;">'+'{{ $timertournament[13]->level }}'+'</b>');
+          $('#clocker').html('<p class="blink">'+'{{ gmdate("i:s", $timertournament[13]->in_seconds) }}'+'</p>');
+          $('#poker_blinds').html('<b style="color:red; font-size: 60px;">'+'{{ $timertournament[13]->blinds }}'+'</b>');
+          this.playAlarmendtournament();
+        }
+
         var minute = Math.floor(timer / 60),
             second = (timer % 60) + "",
             second = second.length > 1 ? second : "0" + second;
@@ -494,13 +520,7 @@
             $('#nextlevel1').html('{{ $timertournament[13]->level }}'+' - '+'{{ $timertournament[13]->blinds }}');
             $('#nextlevel2').html('{{ gmdate("i:s", $timertournament[13]->in_seconds ) }}');
             break;
-          case 13:
-            $('#round').html('<b style="color:red;">'+'END OF TOURNAMENT'+'</b>');
-            $('#currentlevel1').html('END OF TOURNAMENT  ');
-            $('#currentlevel2').html(' ');
-            $('#nextlevel1').html(' ');
-            $('#nextlevel2').html(' ');
-            break;
+            
         }
       }
     };
@@ -508,9 +528,11 @@
 
   $('#poker_play_pause').on('click', function (event) {
     if (Poker.isGamePaused()) {
+      $('#poker_play').removeClass('glyphicon-play');
+      $('#poker_play').removeClass('glyphicon-pause');
       $('#poker_play_pause').removeClass('btn-primary');
       $('#poker_play_pause').addClass('btn-danger');
-      $('#play_pause_div').html('Pause');
+      $('#play_pause_div').html('<span style="color:red;"><i class="glyphicon glyphicon-pause"></i> PAUSE</span>');
       Poker.startClock();
     } else {
       blueButtonPlay();
@@ -537,9 +559,11 @@
 
   function blueButtonPlay()
   {
+    $('#poker_play').removeClass('glyphicon-play');
+    $('#poker_play').removeClass('glyphicon-pause');
     $('#poker_play_pause').removeClass('btn-danger');
     $('#poker_play_pause').addClass('btn-primary');
-    $('#play_pause_div').html('Play');
+    $('#play_pause_div').html('<span style="color:#0a0;"><i class="glyphicon glyphicon-play"></i> START</span>');
   }
 
  /*DAILY TOURNAMENT*/  
@@ -583,6 +607,7 @@
 
           $('#minusplayermodal').modal('hide');
         }
+
     });
   });
 

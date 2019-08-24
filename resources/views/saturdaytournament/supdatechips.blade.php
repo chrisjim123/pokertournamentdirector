@@ -2,7 +2,7 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header"  >
           <h1>
             Update Chips
             <small>Saturday Tournament</small>
@@ -10,9 +10,9 @@
 
        <ol class="breadcrumb">
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="{{ url('/chipsview') }}">Chips Controller</a></li>
+            <li><a href="{{ url('/schipsview') }}">Chips Controller</a></li>
             <li class="active">Update Chips</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -42,9 +42,10 @@ function current_page($uri = "/") {
              <ul class="nav nav-tabs">        
                 <li {{ (current_page("splayersview")) ? 'class=active' : '' }}><a href="{{ url('/splayersview') }}">Players</a></li> 
                 <li {{ (current_page("sbuyinview")) ? 'class=active' : '' }}><a href="{{ url('/sbuyinview') }}">Buyin</a></li>
-                <li {{ (current_page("supdatechipsview")) ? 'class=active' : '' }}><a href="#">Chips</a></li>
+                <li {{ (current_page("supdatechipsview")) ? 'class=active' : '' }}><a href="{{ url('/schipsview') }}">Chips</a></li>
                 <li {{ (current_page("slevelview")) ? 'class=active' : '' }}><a href="{{ url('/slevelview') }}">Level</a></li>
                 <li {{ (current_page("spotmoneyview")) ? 'class=active' : '' }}><a href="{{ url('/spotmoneyview') }}">Pot Money</a></li>
+                <li {{ (current_page("saddnewpercent")) ? 'class=active' : '' }}><a href="{{ url('/sprizemoneyview') }}">Percent Prize</a></li>
               </ul>
 
 
@@ -58,7 +59,7 @@ function current_page($uri = "/") {
                           <br><br>
                           <div class="col-xs-3">
                           <label for="image"><h4 style="color:red;">Upload different Chip</h4></label>
-                          <input id = "image" type="file" name="image" accept="image/*" />    
+                          <input class="form-control" id = "image" type="file" name="image" accept="image/*" required="" />    
                           <br>
                           <label for="first_name"><h4>Chip Value</h4></label>
                           <input style="border:none; background:white;" value="{{$chips->value}}" type="number" class="form-control" name="chipvalue"  placeholder="Enter Chip Value" required="">
@@ -74,8 +75,6 @@ function current_page($uri = "/") {
         </div><!--/col-12-->
     </div><!--/row-->
                                                       
-@endsection
-
 <style>
 
 #uprall {
@@ -86,6 +85,9 @@ function current_page($uri = "/") {
     text-transform:capitalize;
 }
 </style>
+
+                                                      
+@endsection
 
 
 

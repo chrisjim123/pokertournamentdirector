@@ -2,9 +2,9 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
-            Add New Percent
+            <b style="color:white;">Add New Percent</b>
             <small>Saturday Tournament</small>
           </h1>
 
@@ -48,15 +48,14 @@ function current_page($uri = "/") {
    
               </ul>
 
-
-                <hr>
+ 
                   <form class="form" action="{{ url('/saddpercent')}}" method="post" id="registrationForm" enctype="multipart/form-data">
                            {{ csrf_field() }}
 
                       <div class="form-group">
 
                           <div class="col-xs-4">
-                              <label for="place"><h4>Place</h4></label>
+                              <label for="place"><h4 style="color:white;">Place</h4></label>
                               <input style="border:none; background:white;" value="" type="text" class="form-control" name="place"  placeholder="Enter Place" required="">
                           </div>
                       </div>
@@ -64,7 +63,7 @@ function current_page($uri = "/") {
                     <div class="form-group">
 
                           <div class="col-xs-4">
-                              <label for="amount"><h4>Percent</h4></label>
+                              <label for="amount"><h4 style="color:white;">Percent</h4></label>
                               <input style="border:none; background:white;" value="" type="text" class="form-control" name="amount"  placeholder="Enter Percent" required="">
                           </div>
                       </div>
@@ -82,8 +81,6 @@ function current_page($uri = "/") {
           </div><!--/tab-pane-->
         </div><!--/col-12-->
     </div><!--/row-->
-                                                      
-@endsection
 
 <style>
 
@@ -96,8 +93,9 @@ function current_page($uri = "/") {
 }
 </style>
 
-
-
+                                                      
+@endsection
+ 
 
 
 

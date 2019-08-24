@@ -2,9 +2,9 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
-            Add New Percent
+            <b style="color:white;">Add New Percent</b>
             <small>Daily Tournament</small>
           </h1>
 
@@ -12,7 +12,7 @@
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="{{ url('/prizemoneyview') }}">Prize Money Controller</a></li>
             <li class="active">Add New Percent</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -82,8 +82,6 @@ function current_page($uri = "/") {
           </div><!--/tab-pane-->
         </div><!--/col-12-->
     </div><!--/row-->
-                                                      
-@endsection
 
 <style>
 
@@ -95,6 +93,9 @@ function current_page($uri = "/") {
     text-transform:capitalize;
 }
 </style>
+
+                                                    
+@endsection
 
 
 

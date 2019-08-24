@@ -2,7 +2,7 @@
 
 @section('contentheader')
   <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" >
           <h1>
             Edit Prize Money
             <small>Saturday Tournament</small>
@@ -12,7 +12,7 @@
             <li><a href="{{ url('/tournament') }}"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="{{ url('/sprizemoneyview') }}">Prize Money Controller</a></li>
             <li class="active">Edit Prize Money</li>
-          </ol>
+          </ol><br>
         </section>
 @endsection
 
@@ -44,7 +44,7 @@ function current_page($uri = "/") {
                 <li {{ (current_page("schipsview")) ? 'class=active' : '' }}><a href="{{ url('/schipsview') }}">Chips</a></li>
                 <li {{ (current_page("slevelview")) ? 'class=active' : '' }}><a href="{{ url('/slevelview') }}">Level</a></li>
                 <li {{ (current_page("spotmoneyview")) ? 'class=active' : '' }}><a href="{{ url('/spotmoneyview') }}">Pot Money</a></li>
-                <li {{ (current_page("sditprizemoney")) ? 'class=active' : '' }}><a href="{{ url('/sditprizemoney') }}">Percent Prize</a></li>
+                <li {{ (current_page("seditprizemoney")) ? 'class=active' : '' }}><a href="{{ url('/sditprizemoney') }}">Percent Prize</a></li>
    
               </ul>
 
@@ -83,8 +83,6 @@ function current_page($uri = "/") {
         </div><!--/col-12-->
     </div><!--/row-->
                                                       
-@endsection
-
 <style>
 
 #uprall {
@@ -96,7 +94,8 @@ function current_page($uri = "/") {
 }
 </style>
 
-
+                                                      
+@endsection
 
 
 
